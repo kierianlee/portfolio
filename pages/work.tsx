@@ -45,6 +45,7 @@ const Work = ({ projects }: InferGetStaticPropsType<typeof getStaticProps>) => {
                       alt={name}
                       fill
                       className="object-cover"
+                      placeholder="blur"
                     />
                     <div className="absolute bottom-0 z-20 bg-[rgba(0,0,0,0.6)] w-full p-2 flex justify-between items-center">
                       <div className="font-mono text-sm">{name}</div>

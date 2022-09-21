@@ -49,6 +49,7 @@ const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
                       className="object-cover rounded-full"
                       fill
                       sizes="100%"
+                      placeholder="blur"
                     />
                   </div>
                   <div className="flex-1">
