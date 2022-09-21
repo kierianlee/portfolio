@@ -2,6 +2,8 @@ import Head from "next/head";
 import { ReactElement } from "react";
 import Layout from "../components/layout/layout";
 import WithCodeTags from "../components/with-code-tag";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 const Contact = () => {
   return (
@@ -22,6 +24,22 @@ const Contact = () => {
               </a>
               .
             </p>
+            <div className="flex gap-4 justify-center mt-4">
+              <a
+                href="https://github.com/kierien"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FontAwesomeIcon icon={faGithub} size="2x" />
+              </a>
+              <a
+                href="https://my.linkedin.com/in/kierian"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FontAwesomeIcon icon={faLinkedin} size="2x" />
+              </a>
+            </div>
           </div>
         </WithCodeTags>
       </div>
