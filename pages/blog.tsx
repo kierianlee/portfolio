@@ -34,12 +34,12 @@ const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
       <Head>
         <title>Kierian - Blog</title>
       </Head>
-      <div className="flex flex-col items-center h-full pt-16 pb-32 px-8">
+      <div className="flex h-full flex-col items-center px-8 pt-16 pb-32">
         <WithCodeTags tag="h1" className="mt-12">
-          <h1 className="text-3xl font-semibold my-4">Blog</h1>
+          <h1 className="my-4 text-3xl font-semibold">Blog</h1>
         </WithCodeTags>
         <div></div>
-        <div className="max-w-xl mx-auto mt-16 flex flex-col gap-16">
+        <div className="mx-auto mt-16 flex max-w-xl flex-col gap-16">
           {posts.map((post: Post, index: number) => (
             <Post post={post} key={index} />
           ))}
@@ -58,23 +58,23 @@ const Post = ({
 
   return (
     <Link href={`/post/${_id}`} passHref>
-      <a className="isolated relative flex gap-6 items-center">
+      <a className="isolated relative flex items-center gap-6">
         <div className="relative h-24 w-24">
           <Image
             {...imageProps}
             alt={title}
-            className="object-cover rounded-full"
+            className="rounded-full object-cover"
             layout="fill"
             sizes="100%"
             placeholder="blur"
           />
         </div>
         <div className="flex-1">
-          <div className="font-bold text-base md:text-xl">{title}</div>
+          <div className="text-base font-bold md:text-xl">{title}</div>
           <div className="font-mono text-xs text-dimmed">
             {dayjs(date).format("DD MMM YYYY")}
           </div>
-          <div className="font-mono text-xs md:text-sm mt-4">{subtitle}</div>
+          <div className="mt-4 font-mono text-xs md:text-sm">{subtitle}</div>
         </div>
       </a>
     </Link>

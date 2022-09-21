@@ -14,7 +14,7 @@ const Home = () => {
       </Head>
       <div className="min-h-full px-12">
         <div className="h-screen">
-          <div className="flex flex-col items-center justify-center h-full -mt-6">
+          <div className="-mt-6 flex h-full flex-col items-center justify-center">
             <AnimatedK />
             <WithCodeTags tag="h1" className="mt-12">
               <h1
@@ -25,11 +25,11 @@ const Home = () => {
               </h1>
             </WithCodeTags>
             <WithCodeTags tag="p" className="">
-              <p className="block text-center font-mono text-[12px] sm:text-sm text-dimmed max-w-md hover:text-white duration-200">
+              <p className="block max-w-md text-center font-mono text-[12px] text-dimmed duration-200 hover:text-white sm:text-sm">
                 I specialize in creating, designing, developing and deploying
                 software systems at scale.
               </p>
-              <div className="flex gap-4 justify-center mt-4">
+              <div className="mt-4 flex justify-center gap-4">
                 <a
                   href="https://github.com/kierien"
                   target="_blank"

@@ -32,12 +32,12 @@ const Work = ({ projects }: InferGetStaticPropsType<typeof getStaticProps>) => {
       <Head>
         <title>Kierian - Work</title>
       </Head>
-      <div className="flex flex-col items-center h-full pt-16 pb-32 px-8">
+      <div className="flex h-full flex-col items-center px-8 pt-16 pb-32">
         <WithCodeTags tag="h1" className="mt-12">
-          <h1 className="text-3xl font-semibold my-4">Work</h1>
+          <h1 className="my-4 text-3xl font-semibold">Work</h1>
         </WithCodeTags>
         <div className="container mx-auto mt-16">
-          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-16">
+          <div className="grid gap-16 md:grid-cols-2 xl:grid-cols-3">
             {projects.map((project: Project, index: number) => (
               <ProjectCard project={project} key={index} />
             ))}
@@ -65,12 +65,12 @@ const ProjectCard = ({
           className="object-cover"
           placeholder="blur"
         />
-        <div className="absolute bottom-0 z-20 bg-[rgba(0,0,0,0.6)] w-full p-2 flex justify-between items-center">
+        <div className="absolute bottom-0 z-20 flex w-full items-center justify-between bg-[rgba(0,0,0,0.6)] p-2">
           <div className="font-mono text-sm">{name}</div>
-          <div className="flex gap-4 items-center">
+          <div className="flex items-center gap-4">
             {tags.map((item: string, index: number) => (
               <div
-                className="text-xs rounded bg-[rgba(0,0,0,0.8)] text-white font-mono py-1 px-1"
+                className="rounded bg-[rgba(0,0,0,0.8)] py-1 px-1 font-mono text-xs text-white"
                 key={index}
               >
                 {item}

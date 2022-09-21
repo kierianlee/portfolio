@@ -11,20 +11,20 @@ const Contact = () => {
       <Head>
         <title>Kierian - Contact</title>
       </Head>
-      <div className="flex flex-col items-center h-full py-16">
+      <div className="flex h-full flex-col items-center py-16">
         <WithCodeTags tag="h1" className="mt-12">
-          <h1 className="text-3xl font-semibold my-4">Contact</h1>
+          <h1 className="my-4 text-3xl font-semibold">Contact</h1>
         </WithCodeTags>
         <WithCodeTags tag="p" className="mt-16">
-          <div className="max-w-xl mx-auto">
-            <p className="font-mono text-center text-sm text-dimmed hover:text-white duration-200">
+          <div className="mx-auto max-w-xl">
+            <p className="text-center font-mono text-sm text-dimmed duration-200 hover:text-white">
               You can reach me at{" "}
               <a href="mailto:hey@kierian.me" className="text-crayola">
                 hey@kierian.me
               </a>
               .
             </p>
-            <div className="flex gap-4 justify-center mt-4">
+            <div className="mt-4 flex justify-center gap-4">
               <a
                 href="https://github.com/kierien"
                 target="_blank"

@@ -9,7 +9,7 @@ const CodeTag = ({
   return (
     <div
       style={{ fontFamily: "'La Belle Aurore', cursive", ...style }}
-      className={`text-base select-none pointer-events-none opacity-20 leading-none ${
+      className={`pointer-events-none select-none text-base leading-none opacity-20 ${
         className ?? ""
       }`}
       {...props}

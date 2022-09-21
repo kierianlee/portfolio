@@ -18,7 +18,7 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
       <Head>
         <title>{`Kierian - ${post.title}`}</title>
       </Head>
-      <div className="flex flex-col items-center h-full pt-16 pb-32 px-8">
+      <div className="flex h-full flex-col items-center px-8 pt-16 pb-32">
         <WithCodeTags tag="h1" className="mt-12">
           <div className="my-4 text-center">
             <h1 className="text-3xl font-semibold">{post.title}</h1>
@@ -27,7 +27,7 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
             </small>
           </div>
         </WithCodeTags>
-        <div className="max-w-2xl mx-auto mt-12">
+        <div className="mx-auto mt-12 max-w-2xl">
           <div className="relative h-48 sm:h-[300px] md:h-[400px]">
             <Image alt={post.title} layout="fill" {...imageProps} />
           </div>
@@ -38,18 +38,18 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
                 block: {
                   normal: ({ children }) =>
                     (children as string[])?.[0] ? (
-                      <p className="font-light text-sm md:text-base">
+                      <p className="text-sm font-light md:text-base">
                         {children}
                       </p>
                     ) : (
-                      <p className="before:content-['\a'] whitespace-pre text-sm md:text-base">
+                      <p className="whitespace-pre text-sm before:content-['\a'] md:text-base">
                         {children}
                       </p>
                     ),
                 },
                 list: {
                   number: ({ children }) => (
-                    <ol className="list-decimal ml-10 text-sm md:text-base font-light">
+                    <ol className="ml-10 list-decimal text-sm font-light md:text-base">
                       {children}
                     </ol>
                   ),
