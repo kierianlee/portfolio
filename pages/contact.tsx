@@ -17,9 +17,12 @@ const Contact = () => {
         </WithCodeTags>
         <WithCodeTags tag="p" className="mt-16">
           <div className="mx-auto max-w-xl">
-            <p className="text-center font-mono text-sm text-dimmed duration-200 hover:text-white">
+            <p className="text-center font-mono text-sm text-muted duration-200 hover:text-white dark:text-dimmed">
               You can reach me at{" "}
-              <a href="mailto:hey@kierian.me" className="text-crayola">
+              <a
+                href="mailto:hey@kierian.me"
+                className="text-blue-500 dark:text-crayola"
+              >
                 hey@kierian.me
               </a>
               .

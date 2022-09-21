@@ -66,7 +66,7 @@ const ProjectCard = ({
           placeholder="blur"
         />
         <div className="absolute bottom-0 z-20 flex w-full items-center justify-between bg-[rgba(0,0,0,0.6)] p-2">
-          <div className="font-mono text-sm">{name}</div>
+          <div className="font-mono text-sm text-white">{name}</div>
           <div className="flex items-center gap-4">
             {tags.map((item: string, index: number) => (
               <div

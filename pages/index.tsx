@@ -25,7 +25,7 @@ const Home = () => {
               </h1>
             </WithCodeTags>
             <WithCodeTags tag="p" className="">
-              <p className="block max-w-md text-center font-mono text-[12px] text-dimmed duration-200 hover:text-white sm:text-sm">
+              <p className="block max-w-md text-center font-mono text-[12px] text-muted duration-200 hover:text-black dark:text-dimmed dark:hover:text-white sm:text-sm">
                 I specialize in creating, designing, developing and deploying
                 software systems at scale.
               </p>

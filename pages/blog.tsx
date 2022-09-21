@@ -71,7 +71,7 @@ const Post = ({
         </div>
         <div className="flex-1">
           <div className="text-base font-bold md:text-xl">{title}</div>
-          <div className="font-mono text-xs text-dimmed">
+          <div className="font-mono text-xs text-muted dark:text-dimmed">
             {dayjs(date).format("DD MMM YYYY")}
           </div>
           <div className="mt-4 font-mono text-xs md:text-sm">{subtitle}</div>

@@ -4,6 +4,7 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: "class",
   theme: {
     fontFamily: {
       serif: ["Source Sans Pro"],
@@ -16,6 +17,7 @@ module.exports = {
         "phantom-darker": "rgb(7, 7, 7)",
         crayola: "#08fdd8",
         dimmed: "rgba(255,255,255,0.6)",
+        muted: "rgba(0,0,0,0.6)",
       },
     },
   },

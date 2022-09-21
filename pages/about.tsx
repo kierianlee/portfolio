@@ -15,7 +15,7 @@ const About = () => {
         </WithCodeTags>
         <div className="mx-auto max-w-xl">
           <WithCodeTags tag="p" className="mt-16">
-            <p className="text-center font-mono text-xs leading-6 text-dimmed duration-200 hover:text-white md:text-sm">
+            <p className="text-center font-mono text-xs leading-6 text-muted duration-200 hover:text-black dark:text-dimmed dark:hover:text-white md:text-sm">
               I am a fullstack developer that has been working professionally
               for half a decade. In that period, {`I've`} had the opportunity to
               successfully design, build and deliver applications at enterprise
