@@ -38,18 +38,18 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
                 block: {
                   normal: ({ children }) =>
                     (children as string[])?.[0] ? (
-                      <p className="font-light text-sm md:text-md">
+                      <p className="font-light text-sm md:text-base">
                         {children}
                       </p>
                     ) : (
-                      <p className="before:content-['\a'] whitespace-pre text-sm md:text-md">
+                      <p className="before:content-['\a'] whitespace-pre text-sm md:text-base">
                         {children}
                       </p>
                     ),
                 },
                 list: {
                   number: ({ children }) => (
-                    <ol className="list-decimal ml-10 text-sm md:text-md">
+                    <ol className="list-decimal ml-10 text-sm md:text-base font-light">
                       {children}
                     </ol>
                   ),
