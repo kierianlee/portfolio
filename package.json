@@ -11,7 +11,9 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/free-brands-svg-icons": "^6.2.0",
+    "@fortawesome/pro-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@headlessui/react": "^1.7.2",
     "@portabletext/react": "^1.0.6",
     "@sanity/client": "^3.4.1",
     "dayjs": "^1.11.5",

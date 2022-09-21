@@ -5,7 +5,7 @@ import Layout from "../../components/layout/layout";
 import WithCodeTags from "../../components/with-code-tag";
 import { sanity } from "../../lib/sanity";
 import { PortableText } from "@portabletext/react";
-import Image from "next/future/image";
+import Image from "next/image";
 import { useNextSanityImage } from "next-sanity-image";
 import { Project } from "../../types/project";
 
@@ -17,17 +17,17 @@ const Work = ({ project }: InferGetStaticPropsType<typeof getStaticProps>) => {
       <Head>
         <title>{`Kierian - ${project.name}`}</title>
       </Head>
-      <div className="flex flex-col items-center h-full py-16">
+      <div className="flex flex-col items-center h-full pt-16 pb-32 px-8">
         <WithCodeTags tag="h1" className="mt-12">
           <h1 className="text-3xl font-semibold my-4">{project.name}</h1>
         </WithCodeTags>
         <div className="max-w-2xl mx-auto mt-12">
-          <div className="relative h-[400px]">
+          <div className="relative h-48 sm:h-[300px] md:h-[400px]">
             <Image
               {...imageProps}
               alt={project.name}
               className="object-cover"
-              fill
+              layout="fill"
             />
           </div>
           <WithCodeTags tag="article" className="mt-16">
@@ -37,16 +37,20 @@ const Work = ({ project }: InferGetStaticPropsType<typeof getStaticProps>) => {
                 block: {
                   normal: ({ children }) =>
                     (children as string[])?.[0] ? (
-                      <p className="font-light">{children}</p>
+                      <p className="font-light text-sm md:text-md">
+                        {children}
+                      </p>
                     ) : (
-                      <p className="before:content-['\a'] whitespace-pre">
+                      <p className="before:content-['\a'] whitespace-pre text-sm md:text-md">
                         {children}
                       </p>
                     ),
                 },
                 list: {
                   number: ({ children }) => (
-                    <ol className="list-decimal ml-10">{children}</ol>
+                    <ol className="list-decimal ml-10 text-sm md:text-md">
+                      {children}
+                    </ol>
                   ),
                 },
               }}

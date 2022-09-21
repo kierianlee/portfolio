@@ -34,7 +34,7 @@ const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
       <Head>
         <title>Kierian - Blog</title>
       </Head>
-      <div className="flex flex-col items-center h-full py-16">
+      <div className="flex flex-col items-center h-full pt-16 pb-32 px-8">
         <WithCodeTags tag="h1" className="mt-12">
           <h1 className="text-3xl font-semibold my-4">Blog</h1>
         </WithCodeTags>
@@ -70,11 +70,11 @@ const Post = ({
           />
         </div>
         <div className="flex-1">
-          <div className="font-bold text-xl">{title}</div>
+          <div className="font-bold text-md md:text-xl">{title}</div>
           <div className="font-mono text-xs text-dimmed">
             {dayjs(date).format("DD MMM YYYY")}
           </div>
-          <div className="font-mono text-sm mt-4">{subtitle}</div>
+          <div className="font-mono text-xs md:text-sm mt-4">{subtitle}</div>
         </div>
       </a>
     </Link>

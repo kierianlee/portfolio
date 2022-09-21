@@ -26,7 +26,7 @@ const AnimatedK = () => {
   return (
     <motion.svg
       viewBox="0 0 460 620"
-      style={{ height: "200px" }}
+      className="h-36 md:h-48"
       strokeDasharray="1000"
       strokeDashoffset="1000"
     >

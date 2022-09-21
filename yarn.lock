@@ -63,12 +63,24 @@
   dependencies:
     "@fortawesome/fontawesome-common-types" "6.2.0"
 
+"@fortawesome/pro-solid-svg-icons@^6.2.0":
+  version "6.2.0"
+  resolved "https://npm.fontawesome.com/@fortawesome/pro-solid-svg-icons/-/6.2.0/pro-solid-svg-icons-6.2.0.tgz#ba7e1d85b75576306c456a9193e2799b64dd704c"
+  integrity sha512-zYlZE6FPsIT2o70U88oMai8C4x/CZvvz5AJ2MVJjac1PtGYyKVdt83TuLq6cEAx7ku3O/JiHWPrYRNtV6c1Zyg==
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "6.2.0"
+
 "@fortawesome/react-fontawesome@^0.2.0":
   version "0.2.0"
   resolved "https://npm.fontawesome.com/@fortawesome/react-fontawesome/-/0.2.0/react-fontawesome-0.2.0.tgz#d90dd8a9211830b4e3c08e94b63a0ba7291ddcf4"
   integrity sha512-uHg75Rb/XORTtVt7OS9WoK8uM276Ufi7gCzshVWkUJbHhh3svsUUeqXerrM96Wm7fRiDzfKRwSoahhMIkGAYHw==
   dependencies:
     prop-types "^15.8.1"
+
+"@headlessui/react@^1.7.2":
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/@headlessui/react/-/react-1.7.2.tgz#e6a6a8d38342064a53182f1eb2bf6d9c1e53ba6a"
+  integrity sha512-snLv2lxwsf2HNTOBNgHYdvoYZ3ChJE8QszPi1d/hl9js8KrFrUulTaQBfSyPbJP5BybVreWh9DxCgz9S0Z6hKQ==
 
 "@humanwhocodes/config-array@^0.10.4":
   version "0.10.4"

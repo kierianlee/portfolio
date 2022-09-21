@@ -30,14 +30,20 @@ const Contact = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <FontAwesomeIcon icon={faGithub} size="2x" />
+                <FontAwesomeIcon
+                  icon={faGithub}
+                  className="text-2xl md:text-3xl"
+                />
               </a>
               <a
                 href="https://my.linkedin.com/in/kierian"
                 target="_blank"
                 rel="noreferrer"
               >
-                <FontAwesomeIcon icon={faLinkedin} size="2x" />
+                <FontAwesomeIcon
+                  icon={faLinkedin}
+                  className="text-2xl md:text-3xl"
+                />
               </a>
             </div>
           </div>

@@ -46,7 +46,7 @@ body,
 }
 
 .intro-title {
-  @apply text-5xl font-semibold my-4 text-center;
+  @apply font-semibold my-4 text-center;
   position: relative;
 }
 
@@ -69,7 +69,7 @@ body,
 
 .intro-title::after {
   left: -2px;
-  text-shadow: 3px 0 red;
+  text-shadow: 3px 0 #08fdd8;
   animation: noise-anim 2s infinite linear alternate-reverse;
 }
 

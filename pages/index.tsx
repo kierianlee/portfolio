@@ -18,14 +18,14 @@ const Home = () => {
             <AnimatedK />
             <WithCodeTags tag="h1" className="mt-12">
               <h1
-                className="intro-title"
+                className="intro-title text-3xl md:text-5xl"
                 data-text="Hi, I'm Kierian, fullstack developer."
               >
                 Hi, {`I'm`} Kierian, fullstack developer.
               </h1>
             </WithCodeTags>
             <WithCodeTags tag="p" className="">
-              <p className="block text-center font-mono text-sm text-dimmed max-w-md hover:text-white duration-200">
+              <p className="block text-center font-mono text-[12px] sm:text-sm text-dimmed max-w-md hover:text-white duration-200">
                 I specialize in creating, designing, developing and deploying
                 software systems at scale.
               </p>
@@ -35,14 +35,20 @@ const Home = () => {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <FontAwesomeIcon icon={faGithub} size="2x" />
+                  <FontAwesomeIcon
+                    icon={faGithub}
+                    className="text-2xl md:text-3xl"
+                  />
                 </a>
                 <a
                   href="https://my.linkedin.com/in/kierian"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <FontAwesomeIcon icon={faLinkedin} size="2x" />
+                  <FontAwesomeIcon
+                    icon={faLinkedin}
+                    className="text-2xl md:text-3xl"
+                  />
                 </a>
               </div>
             </WithCodeTags>

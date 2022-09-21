@@ -9,13 +9,13 @@ const About = () => {
       <Head>
         <title>Kierian - About</title>
       </Head>
-      <div className="flex flex-col items-center h-full py-16">
+      <div className="flex flex-col items-center h-full pt-16 pb-32 px-8">
         <WithCodeTags tag="h1" className="mt-12">
           <h1 className="text-3xl font-semibold my-4">About</h1>
         </WithCodeTags>
-        <WithCodeTags tag="p" className="mt-16">
-          <div className="max-w-xl mx-auto">
-            <p className="font-mono text-center text-sm text-dimmed hover:text-white duration-200">
+        <div className="max-w-xl mx-auto">
+          <WithCodeTags tag="p" className="mt-16">
+            <p className="font-mono text-center text-xs md:text-sm text-dimmed hover:text-white duration-200 leading-6">
               I am a fullstack developer that has been working professionally
               for half a decade. In that period, {`I've`} had the opportunity to
               successfully design, build and deliver applications at enterprise
@@ -30,8 +30,8 @@ const About = () => {
               Also an audio engineer, music producer & artist under the alias
               {` "kyi"`}. My work is available on most streaming platforms.
             </p>
-          </div>
-        </WithCodeTags>
+          </WithCodeTags>
+        </div>
       </div>
     </>
   );

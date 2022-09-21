@@ -32,12 +32,12 @@ const Work = ({ projects }: InferGetStaticPropsType<typeof getStaticProps>) => {
       <Head>
         <title>Kierian - Work</title>
       </Head>
-      <div className="flex flex-col items-center h-full py-16">
+      <div className="flex flex-col items-center h-full pt-16 pb-32 px-8">
         <WithCodeTags tag="h1" className="mt-12">
           <h1 className="text-3xl font-semibold my-4">Work</h1>
         </WithCodeTags>
         <div className="container mx-auto mt-16">
-          <div className="grid grid-cols-3 gap-16">
+          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-16">
             {projects.map((project: Project, index: number) => (
               <ProjectCard project={project} key={index} />
             ))}
