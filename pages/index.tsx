@@ -15,7 +15,10 @@ const Home = () => {
           <div className="flex flex-col items-center justify-center h-full -mt-6">
             <AnimatedK />
             <WithCodeTags tag="h1" className="mt-12">
-              <h1 className="text-5xl font-semibold my-4 text-center">
+              <h1
+                className="intro-title"
+                data-text="Hi, I'm Kierian, fullstack developer."
+              >
                 Hi, {`I'm`} Kierian, fullstack developer.
               </h1>
             </WithCodeTags>
@@ -25,7 +28,6 @@ const Home = () => {
                 software systems at scale.
               </p>
             </WithCodeTags>
-            
           </div>
         </div>
       </div>

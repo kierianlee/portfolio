@@ -1,16 +1,18 @@
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
-import Image from "next/future/image";
+import Image from "next/image";
 import Link from "next/link";
 import { ReactElement } from "react";
 import Layout from "../components/layout/layout";
 import WithCodeTags from "../components/with-code-tag";
 import { sanity } from "../lib/sanity";
 import dayjs from "dayjs";
+import { useNextSanityImage } from "next-sanity-image";
+import { Post } from "../types/post";
 
 const postsQuery = `*[_type == "post"] { 
   _id,
-  "imageUrl": image.asset->url,
+  image,
   date,
   title,
   subtitle
@@ -38,34 +40,44 @@ const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
         </WithCodeTags>
         <div></div>
         <div className="max-w-xl mx-auto mt-16 flex flex-col gap-16">
-          {posts.map(
-            ({ _id, imageUrl, title, subtitle, date }: any, index: number) => (
-              <Link href={`/post/${_id}`} key={index} passHref>
-                <a className="isolated relative flex gap-6 items-center">
-                  <div className="relative h-24 w-24">
-                    <Image
-                      src={imageUrl}
-                      alt={title}
-                      className="object-cover rounded-full"
-                      fill
-                      sizes="100%"
-                      placeholder="blur"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <div className="font-bold text-xl">{title}</div>
-                    <div className="font-mono text-xs text-dimmed">
-                      {dayjs(date).format("DD MMM YYYY")}
-                    </div>
-                    <div className="font-mono text-sm mt-4">{subtitle}</div>
-                  </div>
-                </a>
-              </Link>
-            )
-          )}
+          {posts.map((post: Post, index: number) => (
+            <Post post={post} key={index} />
+          ))}
         </div>
       </div>
     </>
+  );
+};
+
+const Post = ({
+  post: { _id, image, title, subtitle, date },
+}: {
+  post: Post;
+}) => {
+  const imageProps = useNextSanityImage(sanity, image);
+
+  return (
+    <Link href={`/post/${_id}`} passHref>
+      <a className="isolated relative flex gap-6 items-center">
+        <div className="relative h-24 w-24">
+          <Image
+            {...imageProps}
+            alt={title}
+            className="object-cover rounded-full"
+            layout="fill"
+            sizes="100%"
+            placeholder="blur"
+          />
+        </div>
+        <div className="flex-1">
+          <div className="font-bold text-xl">{title}</div>
+          <div className="font-mono text-xs text-dimmed">
+            {dayjs(date).format("DD MMM YYYY")}
+          </div>
+          <div className="font-mono text-sm mt-4">{subtitle}</div>
+        </div>
+      </a>
+    </Link>
   );
 };
 

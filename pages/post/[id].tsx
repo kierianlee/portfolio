@@ -5,10 +5,14 @@ import Layout from "../../components/layout/layout";
 import WithCodeTags from "../../components/with-code-tag";
 import { sanity } from "../../lib/sanity";
 import { PortableText } from "@portabletext/react";
-import Image from "next/future/image";
+import Image from "next/image";
 import dayjs from "dayjs";
+import { useNextSanityImage } from "next-sanity-image";
+import { type Post as PostType } from "../../types/post";
 
 const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const imageProps = useNextSanityImage(sanity, post.image);
+
   return (
     <>
       <Head>
@@ -25,7 +29,7 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
         </WithCodeTags>
         <div className="max-w-2xl mx-auto mt-12">
           <div className="relative h-[400px]">
-            <Image src={post.imageUrl} alt={post.name} fill />
+            <Image alt={post.title} layout="fill" {...imageProps} />
           </div>
           <WithCodeTags tag="article" className="mt-16">
             <PortableText
@@ -60,7 +64,7 @@ const postsQuery = `*[_type == "post"] { _id }`;
 const singlePostQuery = `*[_type == "post" && _id == $id] {
   _id,
   title,
-  "imageUrl": image.asset->url,
+  image,
   content,
   date
 }[0]
@@ -78,9 +82,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: false };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps<{ post: PostType }> = async ({
+  params,
+}) => {
   // It's important to default the slug so that it doesn't return "undefined"
-  const post = await sanity.fetch(singlePostQuery, { id: params?.id });
+  const post = await sanity.fetch(singlePostQuery, {
+    id: params?.id,
+  });
 
   return {
     props: {

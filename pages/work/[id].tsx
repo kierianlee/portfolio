@@ -6,8 +6,12 @@ import WithCodeTags from "../../components/with-code-tag";
 import { sanity } from "../../lib/sanity";
 import { PortableText } from "@portabletext/react";
 import Image from "next/future/image";
+import { useNextSanityImage } from "next-sanity-image";
+import { Project } from "../../types/project";
 
 const Work = ({ project }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const imageProps = useNextSanityImage(sanity, project.image);
+
   return (
     <>
       <Head>
@@ -20,7 +24,7 @@ const Work = ({ project }: InferGetStaticPropsType<typeof getStaticProps>) => {
         <div className="max-w-2xl mx-auto mt-12">
           <div className="relative h-[400px]">
             <Image
-              src={project.imageUrl}
+              {...imageProps}
               alt={project.name}
               className="object-cover"
               fill
@@ -59,7 +63,7 @@ const projectsQuery = `*[_type == "project"] { _id }`;
 const singleProjectQuery = `*[_type == "project" && _id == $id] {
   _id,
   name,
-  "imageUrl": image.asset->url,
+  image,
   description
 }[0]
 `;
@@ -76,7 +80,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: false };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps<{ project: Project }> = async ({
+  params,
+}) => {
   // It's important to default the slug so that it doesn't return "undefined"
   const project = await sanity.fetch(singleProjectQuery, { id: params?.id });
 
