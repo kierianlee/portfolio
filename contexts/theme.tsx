@@ -20,16 +20,16 @@ export function ThemeContextProvider(props: ThemeContextProps): ReactElement {
 
   useEffect(() => {
     if (
-      localStorage.theme === "dark"
+      localStorage.theme === "light"
       // ||
       // (!("theme" in localStorage) &&
-      //   window.matchMedia("(prefers-color-scheme: dark)").matches)
+      //   window.matchMedia("(prefers-color-scheme: light)").matches)
     ) {
-      document.documentElement.classList.add("dark");
-      setDarkMode(true);
-    } else {
       document.documentElement.classList.remove("dark");
       setDarkMode(false);
+    } else {
+      document.documentElement.classList.add("dark");
+      setDarkMode(true);
     }
   }, []);
 
