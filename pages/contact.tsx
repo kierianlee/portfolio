@@ -3,7 +3,6 @@ import { ReactElement } from "react";
 import Layout from "../components/layout/layout";
 import WithCodeTags from "../components/with-code-tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { GetStaticProps } from "next";
 import { sanity } from "../lib/sanity";
 import { NextPageWithLayout } from "./_app";
@@ -31,7 +30,6 @@ export const getStaticProps: GetStaticProps = async () => {
 const Contact: NextPageWithLayout<{
   data: { contact: ContactType; socials: Social[] };
 }> = ({ data }) => {
-  console.log(data);
   return (
     <>
       <Head>
