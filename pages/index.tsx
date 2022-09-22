@@ -8,7 +8,7 @@ import { GetStaticProps } from "next";
 import { sanity } from "../lib/sanity";
 import { Home as HomeType } from "../types/home";
 import { Social } from "../types/social";
-import { socialIcons } from "./utils/social";
+import { socialIcons } from "../utils/social";
 import { NextPageWithLayout } from "./_app";
 
 const homeQuery = `

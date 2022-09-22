@@ -9,7 +9,7 @@ import { sanity } from "../lib/sanity";
 import { NextPageWithLayout } from "./_app";
 import { Contact as ContactType } from "../types/contact";
 import { Social } from "../types/social";
-import { socialIcons } from "./utils/social";
+import { socialIcons } from "../utils/social";
 import { PortableText } from "@portabletext/react";
 
 const contactQuery = `
