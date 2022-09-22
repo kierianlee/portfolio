@@ -8,6 +8,7 @@ import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import { useNextSanityImage } from "next-sanity-image";
 import { Project } from "../../types/project";
+import { Slug } from "../../types/slug";
 
 const Work = ({ project }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const imageProps = useNextSanityImage(sanity, project.image);
@@ -24,7 +25,9 @@ const Work = ({ project }: InferGetStaticPropsType<typeof getStaticProps>) => {
         <div className="mx-auto mt-12 max-w-2xl">
           <div className="relative h-48 sm:h-[300px] md:h-[400px]">
             <Image
-              {...imageProps}
+              blurDataURL={imageProps.blurDataURL}
+              src={imageProps.src}
+              loader={imageProps.loader}
               alt={project.name}
               className="object-cover"
               layout="fill"
@@ -62,33 +65,26 @@ const Work = ({ project }: InferGetStaticPropsType<typeof getStaticProps>) => {
   );
 };
 
-const projectsQuery = `*[_type == "project"] { _id }`;
-
-const singleProjectQuery = `*[_type == "project" && _id == $id] {
-  _id,
-  name,
-  image,
-  description
-}[0]
-`;
-
 export const getStaticPaths: GetStaticPaths = async () => {
-  // Get the paths we want to pre-render based on persons
-  const projects = await sanity.fetch(projectsQuery);
-  const paths = projects.map((project: { _id: string }) => ({
-    params: { id: project._id },
-  }));
+  const paths = await sanity.fetch(
+    `*[_type == "project" && defined(slug.current)][].slug.current`
+  );
 
-  // We'll pre-render only these paths at build time.
-  // { fallback: false } means other routes should 404.
-  return { paths, fallback: false };
+  return {
+    paths: paths.map((slug: string) => ({ params: { slug } })),
+    fallback: false,
+  };
 };
 
 export const getStaticProps: GetStaticProps<{ project: Project }> = async ({
   params,
 }) => {
-  // It's important to default the slug so that it doesn't return "undefined"
-  const project = await sanity.fetch(singleProjectQuery, { id: params?.id });
+  const project = await sanity.fetch(
+    `*[_type == "project" && slug.current == $slug][0]`,
+    {
+      slug: params?.slug || "",
+    }
+  );
 
   return {
     props: {

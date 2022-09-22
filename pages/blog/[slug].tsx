@@ -29,7 +29,14 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
         </WithCodeTags>
         <div className="mx-auto mt-12 max-w-2xl">
           <div className="relative h-48 sm:h-[300px] md:h-[400px]">
-            <Image alt={post.title} layout="fill" {...imageProps} />
+            <Image
+              alt={post.title}
+              layout="fill"
+              blurDataURL={imageProps.blurDataURL}
+              src={imageProps.src}
+              loader={imageProps.loader}
+              priority
+            />
           </div>
           <WithCodeTags tag="article" className="mt-16">
             <PortableText
@@ -63,36 +70,26 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
   );
 };
 
-const postsQuery = `*[_type == "post"] { _id }`;
-
-const singlePostQuery = `*[_type == "post" && _id == $id] {
-  _id,
-  title,
-  image,
-  content,
-  date
-}[0]
-`;
-
 export const getStaticPaths: GetStaticPaths = async () => {
-  // Get the paths we want to pre-render based on persons
-  const posts = await sanity.fetch(postsQuery);
-  const paths = posts.map((post: { _id: string }) => ({
-    params: { id: post._id },
-  }));
+  const paths = await sanity.fetch(
+    `*[_type == "post" && defined(slug.current)][].slug.current`
+  );
 
-  // We'll pre-render only these paths at build time.
-  // { fallback: false } means other routes should 404.
-  return { paths, fallback: false };
+  return {
+    paths: paths.map((slug: string) => ({ params: { slug } })),
+    fallback: false,
+  };
 };
 
 export const getStaticProps: GetStaticProps<{ post: PostType }> = async ({
   params,
 }) => {
-  // It's important to default the slug so that it doesn't return "undefined"
-  const post = await sanity.fetch(singlePostQuery, {
-    id: params?.id,
-  });
+  const post = await sanity.fetch(
+    `*[_type == "post" && slug.current == $slug][0]`,
+    {
+      slug: params?.slug || "",
+    }
+  );
 
   return {
     props: {

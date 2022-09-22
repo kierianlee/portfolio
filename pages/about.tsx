@@ -1,9 +1,28 @@
+import { GetStaticProps } from "next";
 import Head from "next/head";
 import { ReactElement } from "react";
 import Layout from "../components/layout/layout";
 import WithCodeTags from "../components/with-code-tag";
+import { sanity } from "../lib/sanity";
+import { About as AboutType } from "../types/about";
+import { PortableText } from "@portabletext/react";
 
-const About = () => {
+const aboutQuery = `*[_type == "about"][0] { 
+  _id,
+  content
+}`;
+
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await sanity.fetch(aboutQuery);
+
+  return {
+    props: {
+      data,
+    },
+  };
+};
+
+const About = ({ data }: { data: AboutType }) => {
   return (
     <>
       <Head>
@@ -15,21 +34,23 @@ const About = () => {
         </WithCodeTags>
         <div className="mx-auto max-w-xl">
           <WithCodeTags tag="p" className="mt-16">
-            <p className="text-center font-mono text-xs leading-6 text-muted duration-200 hover:text-black dark:text-dimmed dark:hover:text-white md:text-sm">
-              I am a fullstack developer that has been working professionally
-              for half a decade. In that period, {`I've`} had the opportunity to
-              successfully design, build and deliver applications at enterprise
-              scale. I have also been fortunate to be able to lead development
-              teams in the later part of my career.
-              <br />
-              <br />
-              Passionate in taking on ambitious projects with diverse teams, and
-              in the overall software development spectrum.
-              <br />
-              <br />
-              Also an audio engineer, music producer & artist under the alias
-              {` "kyi"`}. My work is available on most streaming platforms.
-            </p>
+            <PortableText
+              value={data.content}
+              components={{
+                block: {
+                  normal: ({ children }) =>
+                    (children as string[])?.[0] ? (
+                      <p className="text-center font-mono text-xs leading-6 text-muted duration-200 hover:text-black dark:text-dimmed dark:hover:text-white md:text-sm">
+                        {children}
+                      </p>
+                    ) : (
+                      <p className="whitespace-pre text-center font-mono text-sm text-xs leading-6 text-muted duration-200 before:content-['\a'] hover:text-black dark:text-dimmed dark:hover:text-white md:text-sm">
+                        {children}
+                      </p>
+                    ),
+                },
+              }}
+            />
           </WithCodeTags>
         </div>
       </div>

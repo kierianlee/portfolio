@@ -45,7 +45,8 @@ const Layout = ({ children }: { children: ReactNode }) => {
             <Link href={path} passHref key={index}>
               <a
                 className={`relative font-mono text-xs font-light md:text-sm ${
-                  router.pathname === path
+                  (router.pathname.includes(path) && path !== "/") ||
+                  (path === "/" && router.pathname === "/")
                     ? "text-blue-500 dark:text-crayola"
                     : "text-muted dark:text-[rgba(255,255,255,0.4)]"
                 } duration-100 hover:text-black dark:hover:text-white ${

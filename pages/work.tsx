@@ -13,7 +13,8 @@ const projectsQuery = `*[_type == "project"] {
   _id,
   image,
   tags,
-  name
+  name,
+  slug
 }`;
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -49,28 +50,30 @@ const Work = ({ projects }: InferGetStaticPropsType<typeof getStaticProps>) => {
 };
 
 const ProjectCard = ({
-  project: { _id, image, name, tags },
+  project: { image, name, tags, slug },
 }: {
   project: Project;
 }) => {
   const imageProps = useNextSanityImage(sanity, image);
 
   return (
-    <Link href={`/work/${_id}`} passHref>
+    <Link href={`/work/${slug.current}`} passHref>
       <a className="isolated relative h-[300px]">
         <Image
-          {...imageProps}
+          blurDataURL={imageProps.blurDataURL}
+          src={imageProps.src}
+          loader={imageProps.loader}
+          priority
           alt={name}
           layout="fill"
           className="object-cover"
-          placeholder="blur"
         />
         <div className="absolute bottom-0 z-20 flex w-full items-center justify-between bg-[rgba(0,0,0,0.6)] p-2">
           <div className="font-mono text-sm text-white">{name}</div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 xl:gap-3">
             {tags.map((item: string, index: number) => (
               <div
-                className="rounded bg-[rgba(0,0,0,0.8)] py-1 px-1 font-mono text-xs text-white"
+                className="rounded bg-[rgba(0,0,0,0.8)] py-1 px-1 font-mono text-[10px] text-white xl:text-xs"
                 key={index}
               >
                 {item}

@@ -15,7 +15,8 @@ const postsQuery = `*[_type == "post"] {
   image,
   date,
   title,
-  subtitle
+  subtitle,
+  slug
 }`;
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -50,18 +51,21 @@ const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
 };
 
 const Post = ({
-  post: { _id, image, title, subtitle, date },
+  post: { image, title, subtitle, date, slug },
 }: {
   post: Post;
 }) => {
   const imageProps = useNextSanityImage(sanity, image);
 
   return (
-    <Link href={`/post/${_id}`} passHref>
+    <Link href={`/blog/${slug.current}`} passHref>
       <a className="isolated relative flex items-center gap-6">
         <div className="relative h-24 w-24">
           <Image
-            {...imageProps}
+            blurDataURL={imageProps.blurDataURL}
+            src={imageProps.src}
+            loader={imageProps.loader}
+            priority
             alt={title}
             className="rounded-full object-cover"
             layout="fill"
