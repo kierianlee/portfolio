@@ -17,7 +17,8 @@ const AnimatedK = () => {
           },
         });
         animation.start({
-          fill: theme.darkMode ? "rgb(8, 253, 216)" : "rgb(59,130,246)",
+          fill: "url(#gradient)",
+          strokeWidth: 0,
           transition: {
             delay: 1.35,
             duration: 0.7,
@@ -33,7 +34,8 @@ const AnimatedK = () => {
           },
         });
         animation.start({
-          fill: theme.darkMode ? "rgb(8, 253, 216)" : "rgb(59,130,246)",
+          fill: "url(#gradient)",
+          strokeWidth: 0,
           transition: {
             duration: 0,
             ease: "easeInOut",
@@ -50,6 +52,21 @@ const AnimatedK = () => {
       strokeDasharray="1000"
       strokeDashoffset="1000"
     >
+      <defs>
+        <linearGradient id="gradient">
+          <stop offset="5%" stopColor="rgb(8, 253, 216)" />
+          <stop offset="95%" stopColor="rgb(59,130,246)" />
+          <animateTransform
+            attributeName="gradientTransform"
+            attributeType="XML"
+            type="rotate"
+            from="0 0.5 0.5"
+            to="360 0.5 0.5"
+            dur="5s"
+            repeatCount="indefinite"
+          />
+        </linearGradient>
+      </defs>
       <motion.path
         style={{ transform: "translate(10px, 10px)" }}
         strokeLinecap="round"
