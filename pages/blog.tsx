@@ -10,6 +10,7 @@ import dayjs from "dayjs";
 import { useNextSanityImage } from "next-sanity-image";
 import { Post } from "../types/post";
 import PageTitle from "../components/page-title";
+import { motion } from "framer-motion";
 
 const postsQuery = `*[_type == "post"] { 
   _id,
@@ -30,6 +31,21 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
+const containerAnimationVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const childAnimationVariants = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1 },
+};
+
 const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
@@ -41,11 +57,16 @@ const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
           <PageTitle title="Blog" />
         </WithCodeTags>
         <div></div>
-        <div className="mx-auto mt-16 flex max-w-xl flex-col gap-16">
+        <motion.div
+          className="mx-auto mt-16 flex max-w-xl flex-col gap-16"
+          variants={containerAnimationVariants}
+          initial="hidden"
+          animate="show"
+        >
           {posts.map((post: Post, index: number) => (
             <Post post={post} key={index} />
           ))}
-        </div>
+        </motion.div>
       </div>
     </>
   );
@@ -59,30 +80,32 @@ const Post = ({
   const imageProps = useNextSanityImage(sanity, image);
 
   return (
-    <Link href={`/blog/${slug.current}`} passHref>
-      <a className="isolated relative flex items-center gap-6">
-        <div className="relative h-24 w-24">
-          <Image
-            blurDataURL={imageProps.blurDataURL}
-            src={imageProps.src}
-            loader={imageProps.loader}
-            priority
-            alt={title}
-            className="rounded-full object-cover"
-            layout="fill"
-            sizes="100%"
-            placeholder="blur"
-          />
-        </div>
-        <div className="flex-1">
-          <div className="text-base font-bold md:text-xl">{title}</div>
-          <div className="font-mono text-xs text-muted dark:text-dimmed">
-            {dayjs(date).format("DD MMM YYYY")}
+    <motion.div variants={childAnimationVariants}>
+      <Link href={`/blog/${slug.current}`} passHref>
+        <motion.a className="isolated relative flex items-center gap-6">
+          <div className="relative h-24 w-24">
+            <Image
+              blurDataURL={imageProps.blurDataURL}
+              src={imageProps.src}
+              loader={imageProps.loader}
+              priority
+              alt={title}
+              className="rounded-full object-cover"
+              layout="fill"
+              sizes="100%"
+              placeholder="blur"
+            />
           </div>
-          <div className="mt-4 font-mono text-xs md:text-sm">{subtitle}</div>
-        </div>
-      </a>
-    </Link>
+          <div className="flex-1">
+            <div className="text-base font-bold md:text-xl">{title}</div>
+            <div className="font-mono text-xs text-muted dark:text-dimmed">
+              {dayjs(date).format("DD MMM YYYY")}
+            </div>
+            <div className="mt-4 font-mono text-xs md:text-sm">{subtitle}</div>
+          </div>
+        </motion.a>
+      </Link>
+    </motion.div>
   );
 };
 

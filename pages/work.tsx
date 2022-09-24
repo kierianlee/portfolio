@@ -9,6 +9,7 @@ import { sanity } from "../lib/sanity";
 import { useNextSanityImage } from "next-sanity-image";
 import { Project } from "../types/project";
 import PageTitle from "../components/page-title";
+import { motion } from "framer-motion";
 
 const projectsQuery = `*[_type == "project"] { 
   _id,
@@ -28,6 +29,21 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
+const containerAnimationVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const childAnimationVariants = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1 },
+};
+
 const Work = ({ projects }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
@@ -39,11 +55,16 @@ const Work = ({ projects }: InferGetStaticPropsType<typeof getStaticProps>) => {
           <PageTitle title="Work" />
         </WithCodeTags>
         <div className="container mx-auto mt-16">
-          <div className="grid gap-16 md:grid-cols-2 xl:grid-cols-3">
+          <motion.div
+            className="grid gap-16 md:grid-cols-2 xl:grid-cols-3"
+            variants={containerAnimationVariants}
+            initial="hidden"
+            animate="show"
+          >
             {projects.map((project: Project, index: number) => (
               <ProjectCard project={project} key={index} />
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </>
@@ -59,7 +80,10 @@ const ProjectCard = ({
 
   return (
     <Link href={`/work/${slug.current}`} passHref>
-      <a className="isolated relative h-[300px]">
+      <motion.a
+        className="isolated relative h-[300px]"
+        variants={childAnimationVariants}
+      >
         <Image
           blurDataURL={imageProps.blurDataURL}
           src={imageProps.src}
@@ -82,7 +106,7 @@ const ProjectCard = ({
             ))}
           </div>
         </div>
-      </a>
+      </motion.a>
     </Link>
   );
 };

@@ -30,7 +30,11 @@ export function ThemeContextProvider(props: ThemeContextProps): ReactElement {
         localStorage.setItem("dirty", "true");
       }
 
-      setDirty(dirty);
+      if (dirty) {
+        setDirty(true);
+      } else {
+        setDirty(false);
+      }
     } else {
       setDirty(false);
     }
