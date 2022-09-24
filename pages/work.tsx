@@ -8,6 +8,7 @@ import WithCodeTags from "../components/with-code-tag";
 import { sanity } from "../lib/sanity";
 import { useNextSanityImage } from "next-sanity-image";
 import { Project } from "../types/project";
+import PageTitle from "../components/page-title";
 
 const projectsQuery = `*[_type == "project"] { 
   _id,
@@ -35,7 +36,7 @@ const Work = ({ projects }: InferGetStaticPropsType<typeof getStaticProps>) => {
       </Head>
       <div className="flex h-full flex-col items-center px-8 pt-16 pb-32">
         <WithCodeTags tag="h1" className="mt-12">
-          <h1 className="my-4 text-3xl font-semibold">Work</h1>
+          <PageTitle title="Work" />
         </WithCodeTags>
         <div className="container mx-auto mt-16">
           <div className="grid gap-16 md:grid-cols-2 xl:grid-cols-3">

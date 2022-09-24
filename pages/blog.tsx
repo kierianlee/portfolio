@@ -9,6 +9,7 @@ import { sanity } from "../lib/sanity";
 import dayjs from "dayjs";
 import { useNextSanityImage } from "next-sanity-image";
 import { Post } from "../types/post";
+import PageTitle from "../components/page-title";
 
 const postsQuery = `*[_type == "post"] { 
   _id,
@@ -37,7 +38,7 @@ const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
       </Head>
       <div className="flex h-full flex-col items-center px-8 pt-16 pb-32">
         <WithCodeTags tag="h1" className="mt-12">
-          <h1 className="my-4 text-3xl font-semibold">Blog</h1>
+          <PageTitle title="Blog" />
         </WithCodeTags>
         <div></div>
         <div className="mx-auto mt-16 flex max-w-xl flex-col gap-16">

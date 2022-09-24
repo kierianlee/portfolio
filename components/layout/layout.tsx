@@ -1,4 +1,4 @@
-import { ReactNode, useContext, useState } from "react";
+import { ReactNode, useContext, useEffect, useState } from "react";
 import CodeTag from "../code-tag";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -6,6 +6,7 @@ import { Switch } from "@headlessui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/pro-solid-svg-icons";
 import ThemeContext from "../../contexts/theme";
+import { motion } from "framer-motion";
 
 const navLinks = [
   { label: "home", path: "/" },
@@ -18,6 +19,10 @@ const navLinks = [
 const Layout = ({ children }: { children: ReactNode }) => {
   const theme = useContext(ThemeContext);
   const router = useRouter();
+
+  if (!theme.ready) {
+    return <></>;
+  }
 
   return (
     <main className="relative flex min-h-full flex-col bg-white dark:bg-phantom dark:text-white">
@@ -38,7 +43,17 @@ const Layout = ({ children }: { children: ReactNode }) => {
         <CodeTag className="ml-4" tag="/body" />
         <CodeTag tag="/html" className="mt-4" />
       </div>
-      <div className="absolute left-1/2 z-20 flex h-10 w-full -translate-x-1/2 items-center justify-center bg-gray-100 py-2 px-6 dark:bg-phantom-dark sm:justify-between">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1,
+          transition: {
+            delay: theme.dirty ? 0 : 1.8,
+            duration: 1,
+          },
+        }}
+        className="absolute left-1/2 z-20 flex h-10 w-full -translate-x-1/2 items-center justify-center bg-gray-100 py-2 px-6 dark:bg-phantom-dark sm:justify-between"
+      >
         <div className="hidden sm:block" />
         <div className="flex flex-wrap items-center gap-x-8 gap-y-2">
           {navLinks.map(({ label, path }, index) => (
@@ -80,7 +95,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
             } inline-block h-4 w-4 transform rounded-full bg-white transition`}
           />
         </Switch>
-      </div>
+      </motion.div>
       <div className="fixed bottom-12 right-12 z-30 sm:hidden">
         {theme.darkMode ? (
           <div

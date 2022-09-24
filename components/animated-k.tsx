@@ -8,22 +8,40 @@ const AnimatedK = () => {
 
   useEffect(() => {
     (async () => {
-      await animation.start({
-        pathLength: 1,
-        transition: {
-          duration: 1.5,
-          ease: "easeInOut",
-        },
-      });
-      await animation.start({
-        fill: theme.darkMode ? "rgb(8, 253, 216)" : "rgb(59,130,246)",
-        transition: {
-          duration: 0.7,
-          ease: "easeInOut",
-        },
-      });
+      if (!theme.dirty) {
+        animation.start({
+          pathLength: 1,
+          transition: {
+            duration: 1.5,
+            ease: "easeInOut",
+          },
+        });
+        animation.start({
+          fill: theme.darkMode ? "rgb(8, 253, 216)" : "rgb(59,130,246)",
+          transition: {
+            delay: 1.35,
+            duration: 0.7,
+            ease: "easeInOut",
+          },
+        });
+      } else {
+        animation.start({
+          pathLength: 1,
+          transition: {
+            duration: 0,
+            ease: "easeInOut",
+          },
+        });
+        animation.start({
+          fill: theme.darkMode ? "rgb(8, 253, 216)" : "rgb(59,130,246)",
+          transition: {
+            duration: 0,
+            ease: "easeInOut",
+          },
+        });
+      }
     })();
-  }, [animation, theme.darkMode]);
+  }, [animation, theme.darkMode, theme.dirty]);
 
   return (
     <motion.svg

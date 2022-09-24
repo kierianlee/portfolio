@@ -8,6 +8,8 @@ import {
 
 const ThemeContext = createContext({
   darkMode: true,
+  ready: false,
+  dirty: null as boolean | null,
   toggleThemeHandler: () => {},
 });
 
@@ -17,6 +19,30 @@ interface ThemeContextProps {
 
 export function ThemeContextProvider(props: ThemeContextProps): ReactElement {
   const [darkMode, setDarkMode] = useState(true);
+  const [ready, setReady] = useState(false);
+  const [dirty, setDirty] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    if (window !== undefined) {
+      const dirty = localStorage.getItem("dirty") === "true";
+
+      if (!dirty) {
+        localStorage.setItem("dirty", "true");
+      }
+
+      setDirty(dirty);
+    } else {
+      setDirty(false);
+    }
+
+    setReady(true);
+  }, []);
+
+  // useEffect(() => {
+  //   if (dirty !== null) {
+  //     setReady(true);
+  //   }
+  // }, [dirty]);
 
   useEffect(() => {
     if (
@@ -48,7 +74,9 @@ export function ThemeContextProvider(props: ThemeContextProps): ReactElement {
   }
 
   return (
-    <ThemeContext.Provider value={{ darkMode, toggleThemeHandler }}>
+    <ThemeContext.Provider
+      value={{ darkMode, toggleThemeHandler, ready, dirty }}
+    >
       {props.children}
     </ThemeContext.Provider>
   );

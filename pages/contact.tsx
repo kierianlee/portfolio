@@ -10,6 +10,8 @@ import { Contact as ContactType } from "../types/contact";
 import { Social } from "../types/social";
 import { socialIcons } from "../utils/social";
 import { PortableText } from "@portabletext/react";
+import PageTitle from "../components/page-title";
+import { motion } from "framer-motion";
 
 const contactQuery = `
 {
@@ -37,49 +39,65 @@ const Contact: NextPageWithLayout<{
       </Head>
       <div className="flex h-full flex-col items-center py-16">
         <WithCodeTags tag="h1" className="mt-12">
-          <h1 className="my-4 text-3xl font-semibold">Contact</h1>
+          <PageTitle title="Contact" />
         </WithCodeTags>
-        <WithCodeTags tag="p" className="mt-16">
-          <div className="mx-auto max-w-xl">
-            <PortableText
-              value={data.contact.content}
-              components={{
-                block: {
-                  normal: ({ children }) =>
-                    (children as string[])?.[0] ? (
-                      <p className="text-center font-mono text-xs leading-6 text-muted duration-200 hover:text-black dark:text-dimmed dark:hover:text-white md:text-sm">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: 1,
+            transition: {
+              delay: 0,
+              duration: 1,
+            },
+          }}
+        >
+          <WithCodeTags tag="p" className="mt-16">
+            <div className="mx-auto max-w-xl">
+              <PortableText
+                value={data.contact.content}
+                components={{
+                  block: {
+                    normal: ({ children }) =>
+                      (children as string[])?.[0] ? (
+                        <p className="text-center font-mono text-xs leading-6 text-muted duration-200 hover:text-black dark:text-dimmed dark:hover:text-white md:text-sm">
+                          {children}
+                        </p>
+                      ) : (
+                        <p className="whitespace-pre text-center font-mono text-sm text-xs leading-6 text-muted duration-200 before:content-['\a'] hover:text-black dark:text-dimmed dark:hover:text-white md:text-sm">
+                          {children}
+                        </p>
+                      ),
+                  },
+                  marks: {
+                    link: ({ children }) => (
+                      <a
+                        href="mailto:hey@kierian.me"
+                        className="text-blue-500 dark:text-crayola"
+                      >
                         {children}
-                      </p>
-                    ) : (
-                      <p className="whitespace-pre text-center font-mono text-sm text-xs leading-6 text-muted duration-200 before:content-['\a'] hover:text-black dark:text-dimmed dark:hover:text-white md:text-sm">
-                        {children}
-                      </p>
+                      </a>
                     ),
-                },
-                marks: {
-                  link: ({ children }) => (
-                    <a
-                      href="mailto:hey@kierian.me"
-                      className="text-blue-500 dark:text-crayola"
-                    >
-                      {children}
-                    </a>
-                  ),
-                },
-              }}
-            />
-            <div className="mt-4 flex justify-center gap-4">
-              {data.socials.map((item, index) => (
-                <a key={index} href={item.url} target="_blank" rel="noreferrer">
-                  <FontAwesomeIcon
-                    icon={socialIcons.find((i) => i.type === item.type)!.icon}
-                    className="text-2xl md:text-3xl"
-                  />
-                </a>
-              ))}
+                  },
+                }}
+              />
+              <div className="mt-4 flex justify-center gap-4">
+                {data.socials.map((item, index) => (
+                  <a
+                    key={index}
+                    href={item.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <FontAwesomeIcon
+                      icon={socialIcons.find((i) => i.type === item.type)!.icon}
+                      className="text-2xl md:text-3xl"
+                    />
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
-        </WithCodeTags>
+          </WithCodeTags>
+        </motion.div>
       </div>
     </>
   );

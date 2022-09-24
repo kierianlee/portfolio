@@ -6,6 +6,8 @@ import WithCodeTags from "../components/with-code-tag";
 import { sanity } from "../lib/sanity";
 import { About as AboutType } from "../types/about";
 import { PortableText } from "@portabletext/react";
+import { motion } from "framer-motion";
+import PageTitle from "../components/page-title";
 
 const aboutQuery = `*[_type == "about"][0] { 
   _id,
@@ -30,28 +32,39 @@ const About = ({ data }: { data: AboutType }) => {
       </Head>
       <div className="flex h-full flex-col items-center px-8 pt-16 pb-32">
         <WithCodeTags tag="h1" className="mt-12">
-          <h1 className="my-4 text-3xl font-semibold">About</h1>
+          <PageTitle title="About" />
         </WithCodeTags>
         <div className="mx-auto max-w-xl">
-          <WithCodeTags tag="p" className="mt-16">
-            <PortableText
-              value={data.content}
-              components={{
-                block: {
-                  normal: ({ children }) =>
-                    (children as string[])?.[0] ? (
-                      <p className="text-center font-mono text-xs leading-6 text-muted duration-200 hover:text-black dark:text-dimmed dark:hover:text-white md:text-sm">
-                        {children}
-                      </p>
-                    ) : (
-                      <p className="whitespace-pre text-center font-mono text-sm text-xs leading-6 text-muted duration-200 before:content-['\a'] hover:text-black dark:text-dimmed dark:hover:text-white md:text-sm">
-                        {children}
-                      </p>
-                    ),
-                },
-              }}
-            />
-          </WithCodeTags>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: 1,
+              transition: {
+                delay: 0,
+                duration: 1,
+              },
+            }}
+          >
+            <WithCodeTags tag="p" className="mt-16">
+              <PortableText
+                value={data.content}
+                components={{
+                  block: {
+                    normal: ({ children }) =>
+                      (children as string[])?.[0] ? (
+                        <p className="text-center font-mono text-xs leading-6 text-muted duration-200 hover:text-black dark:text-dimmed dark:hover:text-white md:text-sm">
+                          {children}
+                        </p>
+                      ) : (
+                        <p className="whitespace-pre text-center font-mono text-sm text-xs leading-6 text-muted duration-200 before:content-['\a'] hover:text-black dark:text-dimmed dark:hover:text-white md:text-sm">
+                          {children}
+                        </p>
+                      ),
+                  },
+                }}
+              />
+            </WithCodeTags>
+          </motion.div>
         </div>
       </div>
     </>
