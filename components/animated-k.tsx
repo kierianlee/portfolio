@@ -35,11 +35,12 @@ const AnimatedK = () => {
       className="h-36 md:h-48"
       strokeDasharray="1000"
       strokeDashoffset="1000"
+      style={{ transform: "scale(1.01)" }}
     >
       <defs>
         <motion.linearGradient id="fill">
           <motion.stop
-            offset="5%"
+            offset="0%"
             initial={{
               stopColor: "rgba(8,253,216, 0)",
             }}
@@ -53,7 +54,7 @@ const AnimatedK = () => {
             }}
           />
           <motion.stop
-            offset="95%"
+            offset="100%"
             initial={{
               stopColor: "rgba(59,130,246,0)",
             }}
@@ -77,8 +78,8 @@ const AnimatedK = () => {
           />
         </motion.linearGradient>
         <motion.linearGradient id="stroke">
-          <motion.stop offset="5%" stopColor="rgba(8,253,216, 1)" />
-          <motion.stop offset="95%" stopColor="rgba(59,130,246,1)" />
+          <motion.stop offset="0%" stopColor="rgba(8,253,216, 1)" />
+          <motion.stop offset="100%" stopColor="rgba(59,130,246,1)" />
           <animateTransform
             attributeName="gradientTransform"
             attributeType="XML"

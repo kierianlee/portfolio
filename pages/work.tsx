@@ -10,6 +10,7 @@ import { useNextSanityImage } from "next-sanity-image";
 import { Project } from "../types/project";
 import PageTitle from "../components/page-title";
 import { motion } from "framer-motion";
+import { imagePlaceholder } from "../utils/image";
 
 const projectsQuery = `*[_type == "project"] { 
   _id,
@@ -85,7 +86,8 @@ const ProjectCard = ({
         variants={childAnimationVariants}
       >
         <Image
-          blurDataURL={imageProps.blurDataURL}
+          blurDataURL={imagePlaceholder}
+          placeholder="blur"
           src={imageProps.src}
           loader={imageProps.loader}
           priority

@@ -11,6 +11,7 @@ import { useNextSanityImage } from "next-sanity-image";
 import { Post } from "../types/post";
 import PageTitle from "../components/page-title";
 import { motion } from "framer-motion";
+import { imagePlaceholder } from "../utils/image";
 
 const postsQuery = `*[_type == "post"] { 
   _id,
@@ -83,14 +84,14 @@ const Post = ({
     <motion.div variants={childAnimationVariants}>
       <Link href={`/blog/${slug.current}`} passHref>
         <motion.a className="isolated relative flex items-center gap-6">
-          <div className="relative h-24 w-24">
+          <div className="relative h-24 w-24 [&>span]:rounded-full">
             <Image
-              blurDataURL={imageProps.blurDataURL}
+              blurDataURL={imagePlaceholder}
               src={imageProps.src}
               loader={imageProps.loader}
               priority
               alt={title}
-              className="rounded-full object-cover"
+              className="object-cover"
               layout="fill"
               sizes="100%"
               placeholder="blur"

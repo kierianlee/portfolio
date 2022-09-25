@@ -40,75 +40,71 @@ const Home: NextPageWithLayout<{
         <title>Kierian - Home</title>
       </Head>
       <div className="min-h-full px-12">
-        <div className="h-screen">
-          <div className="-mt-6 flex h-full flex-col items-center justify-center">
-            <motion.div
-              initial={{
-                transform: theme.dirty ? "translateY(15%)" : "translateY(30%)",
-              }}
-              animate={{
-                transform: "translateY(0%)",
-                transition: {
-                  delay: theme.dirty ? 0 : 1,
-                  duration: 2,
-                },
-              }}
-            >
-              <AnimatedK />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{
-                opacity: 1,
-                transition: {
-                  delay: theme.dirty ? 0 : 1.8,
-                  duration: 1,
-                },
-              }}
-            >
-              <WithCodeTags tag="h1" className="mt-12">
-                <h1
-                  className="intro-title text-3xl md:text-5xl"
-                  data-text={data.home.title}
-                >
-                  {data.home.title}
-                </h1>
-              </WithCodeTags>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{
-                opacity: 1,
-                transition: {
-                  delay: theme.dirty ? 0.5 : 2.3,
-                  duration: 1,
-                },
-              }}
-            >
-              <WithCodeTags tag="p" className="">
-                <p className="block max-w-md text-center font-mono text-[12px] text-muted duration-200 hover:text-black dark:text-dimmed dark:hover:text-white sm:text-sm">
-                  {data.home.subtitle}
-                </p>
-                <div className="mt-4 flex justify-center gap-4">
-                  {data.socials.map((item, index) => (
-                    <a
-                      key={index}
-                      href={item.url}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <FontAwesomeIcon
-                        icon={
-                          socialIcons.find((i) => i.type === item.type)!.icon
-                        }
-                        className="text-2xl md:text-3xl"
-                      />
-                    </a>
-                  ))}
-                </div>
-              </WithCodeTags>
-            </motion.div>
-          </div>
+        <div className="min-h-screen -mt-6 flex h-full flex-col items-center justify-center">
+          <motion.div
+            initial={{
+              transform: theme.dirty ? "translateY(15%)" : "translateY(30%)",
+            }}
+            animate={{
+              transform: "translateY(0%)",
+              transition: {
+                delay: theme.dirty ? 0 : 1,
+                duration: 2,
+              },
+            }}
+          >
+            <AnimatedK />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: 1,
+              transition: {
+                delay: theme.dirty ? 0 : 1.8,
+                duration: 1,
+              },
+            }}
+          >
+            <WithCodeTags tag="h1" className="mt-12">
+              <h1
+                className="intro-title text-3xl md:text-5xl"
+                data-text={data.home.title}
+              >
+                {data.home.title}
+              </h1>
+            </WithCodeTags>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: 1,
+              transition: {
+                delay: theme.dirty ? 0.5 : 2.3,
+                duration: 1,
+              },
+            }}
+          >
+            <WithCodeTags tag="p" className="">
+              <p className="block max-w-md text-center font-mono text-[12px] text-muted duration-200 hover:text-black dark:text-dimmed dark:hover:text-white sm:text-sm">
+                {data.home.subtitle}
+              </p>
+              <div className="mt-4 flex justify-center gap-4">
+                {data.socials.map((item, index) => (
+                  <a
+                    key={index}
+                    href={item.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <FontAwesomeIcon
+                      icon={socialIcons.find((i) => i.type === item.type)!.icon}
+                      className="text-2xl md:text-3xl"
+                    />
+                  </a>
+                ))}
+              </div>
+            </WithCodeTags>
+          </motion.div>
         </div>
       </div>
     </>
