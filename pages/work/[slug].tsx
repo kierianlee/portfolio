@@ -4,11 +4,10 @@ import { ReactElement } from "react";
 import Layout from "../../components/layout/layout";
 import WithCodeTags from "../../components/with-code-tag";
 import { sanity } from "../../lib/sanity";
-import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import { useNextSanityImage } from "next-sanity-image";
 import { Project } from "../../types/project";
-import { Slug } from "../../types/slug";
+import ArticlePortableText from "../../components/article-portable-text";
 
 const Work = ({ project }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const imageProps = useNextSanityImage(sanity, project.image);
@@ -35,30 +34,7 @@ const Work = ({ project }: InferGetStaticPropsType<typeof getStaticProps>) => {
             />
           </div>
           <WithCodeTags tag="article" className="mt-16">
-            <PortableText
-              value={project.description}
-              components={{
-                block: {
-                  normal: ({ children }) =>
-                    (children as string[])?.[0] ? (
-                      <p className="text-sm font-light md:text-base">
-                        {children}
-                      </p>
-                    ) : (
-                      <p className="whitespace-pre text-sm before:content-['\a'] md:text-base">
-                        {children}
-                      </p>
-                    ),
-                },
-                list: {
-                  number: ({ children }) => (
-                    <ol className="ml-10 list-decimal text-sm font-light md:text-base">
-                      {children}
-                    </ol>
-                  ),
-                },
-              }}
-            />
+            <ArticlePortableText value={project.description} />
           </WithCodeTags>
         </div>
       </div>
