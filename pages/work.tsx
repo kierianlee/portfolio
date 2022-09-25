@@ -1,16 +1,14 @@
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
 import { ReactElement } from "react";
 import Layout from "../components/layout/layout";
 import WithCodeTags from "../components/with-code-tag";
 import { sanity } from "../lib/sanity";
-import { useNextSanityImage } from "next-sanity-image";
 import { Project } from "../types/project";
 import PageTitle from "../components/page-title";
 import { motion } from "framer-motion";
-import { imagePlaceholder } from "../utils/image";
+import SanityImage from "../components/sanity-image";
 
 const projectsQuery = `*[_type == "project"] { 
   _id,
@@ -77,24 +75,15 @@ const ProjectCard = ({
 }: {
   project: Project;
 }) => {
-  const imageProps = useNextSanityImage(sanity, image);
-
   return (
     <Link href={`/work/${slug.current}`} passHref>
       <motion.a
         className="isolated relative h-[300px]"
         variants={childAnimationVariants}
       >
-        <Image
-          blurDataURL={imagePlaceholder}
-          placeholder="blur"
-          src={imageProps.src}
-          loader={imageProps.loader}
-          priority
-          alt={name}
-          layout="fill"
-          className="object-cover"
-        />
+        <div className="[&>*>img]:object-cover">
+          <SanityImage alt={name} layout="fill" src={image} />
+        </div>
         <div className="absolute bottom-0 z-20 flex w-full items-center justify-between bg-[rgba(0,0,0,0.6)] p-2">
           <div className="font-mono text-sm text-white">{name}</div>
           <div className="flex items-center gap-2 xl:gap-3">

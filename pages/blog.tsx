@@ -1,17 +1,15 @@
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
 import { ReactElement } from "react";
 import Layout from "../components/layout/layout";
 import WithCodeTags from "../components/with-code-tag";
 import { sanity } from "../lib/sanity";
 import dayjs from "dayjs";
-import { useNextSanityImage } from "next-sanity-image";
 import { Post } from "../types/post";
 import PageTitle from "../components/page-title";
 import { motion } from "framer-motion";
-import { imagePlaceholder } from "../utils/image";
+import SanityImage from "../components/sanity-image";
 
 const postsQuery = `*[_type == "post"] { 
   _id,
@@ -78,24 +76,14 @@ const Post = ({
 }: {
   post: Post;
 }) => {
-  const imageProps = useNextSanityImage(sanity, image);
-
   return (
     <motion.div variants={childAnimationVariants}>
       <Link href={`/blog/${slug.current}`} passHref>
         <motion.a className="isolated relative flex items-center gap-6">
           <div className="relative h-24 w-24 [&>span]:rounded-full">
-            <Image
-              blurDataURL={imagePlaceholder}
-              src={imageProps.src}
-              loader={imageProps.loader}
-              priority
-              alt={title}
-              className="object-cover"
-              layout="fill"
-              sizes="100%"
-              placeholder="blur"
-            />
+            <div className="[&>*>img]:rounded-full [&>*>img]:object-cover">
+              <SanityImage alt={title} layout="fill" src={image} />
+            </div>
           </div>
           <div className="flex-1">
             <div className="text-base font-bold md:text-xl">{title}</div>
