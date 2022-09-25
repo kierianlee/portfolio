@@ -4,11 +4,11 @@ import { ReactElement } from "react";
 import Layout from "../../components/layout/layout";
 import WithCodeTags from "../../components/with-code-tag";
 import { sanity } from "../../lib/sanity";
-import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import dayjs from "dayjs";
 import { useNextSanityImage } from "next-sanity-image";
 import { type Post as PostType } from "../../types/post";
+import ArticlePortableText from "../../components/article-portable-text";
 
 const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const imageProps = useNextSanityImage(sanity, post.image);
@@ -27,42 +27,20 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
             </small>
           </div>
         </WithCodeTags>
-        <div className="mx-auto mt-12 max-w-2xl">
+        <div className="mx-auto mt-12 w-full max-w-2xl">
           <div className="relative h-48 sm:h-[300px] md:h-[400px]">
             <Image
               alt={post.title}
               layout="fill"
               blurDataURL={imageProps.blurDataURL}
+              placeholder="blur"
               src={imageProps.src}
               loader={imageProps.loader}
               priority
             />
           </div>
           <WithCodeTags tag="article" className="mt-16">
-            <PortableText
-              value={post.content}
-              components={{
-                block: {
-                  normal: ({ children }) =>
-                    (children as string[])?.[0] ? (
-                      <p className="text-sm font-light md:text-base">
-                        {children}
-                      </p>
-                    ) : (
-                      <p className="whitespace-pre text-sm before:content-['\a'] md:text-base">
-                        {children}
-                      </p>
-                    ),
-                },
-                list: {
-                  number: ({ children }) => (
-                    <ol className="ml-10 list-decimal text-sm font-light md:text-base">
-                      {children}
-                    </ol>
-                  ),
-                },
-              }}
-            />
+            <ArticlePortableText value={post.content} />
           </WithCodeTags>
         </div>
       </div>
