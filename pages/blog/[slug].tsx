@@ -4,15 +4,12 @@ import { ReactElement } from "react";
 import Layout from "../../components/layout/layout";
 import WithCodeTags from "../../components/with-code-tag";
 import { sanity } from "../../lib/sanity";
-import Image from "next/image";
 import dayjs from "dayjs";
-import { useNextSanityImage } from "next-sanity-image";
 import { type Post as PostType } from "../../types/post";
 import ArticlePortableText from "../../components/article-portable-text";
+import SanityImage from "../../components/sanity-image";
 
 const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const imageProps = useNextSanityImage(sanity, post.image);
-
   return (
     <>
       <Head>
@@ -28,16 +25,8 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
           </div>
         </WithCodeTags>
         <div className="mx-auto mt-12 w-full max-w-2xl">
-          <div className="relative h-48 sm:h-[300px] md:h-[400px]">
-            <Image
-              alt={post.title}
-              layout="fill"
-              blurDataURL={imageProps.blurDataURL}
-              placeholder="blur"
-              src={imageProps.src}
-              loader={imageProps.loader}
-              priority
-            />
+          <div className="relative h-48 sm:h-[300px] md:h-[400px] [&>*>img]:object-cover">
+            <SanityImage src={post.image} layout="fill" className="cover" />
           </div>
           <WithCodeTags tag="article" className="mt-16">
             <ArticlePortableText value={post.content} />

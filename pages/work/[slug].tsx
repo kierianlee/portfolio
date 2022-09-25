@@ -4,14 +4,11 @@ import { ReactElement } from "react";
 import Layout from "../../components/layout/layout";
 import WithCodeTags from "../../components/with-code-tag";
 import { sanity } from "../../lib/sanity";
-import Image from "next/image";
-import { useNextSanityImage } from "next-sanity-image";
 import { Project } from "../../types/project";
 import ArticlePortableText from "../../components/article-portable-text";
+import SanityImage from "../../components/sanity-image";
 
 const Work = ({ project }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const imageProps = useNextSanityImage(sanity, project.image);
-
   return (
     <>
       <Head>
@@ -22,16 +19,8 @@ const Work = ({ project }: InferGetStaticPropsType<typeof getStaticProps>) => {
           <h1 className="my-4 text-3xl font-semibold">{project.name}</h1>
         </WithCodeTags>
         <div className="mx-auto mt-12 w-full max-w-2xl">
-          <div className="relative h-48 sm:h-[300px] md:h-[400px]">
-            <Image
-              blurDataURL={imageProps.blurDataURL}
-              src={imageProps.src}
-              loader={imageProps.loader}
-              alt={project.name}
-              layout="fill"
-              placeholder="blur"
-              priority
-            />
+          <div className="relative h-48 sm:h-[300px] md:h-[400px] [&>*>img]:object-cover">
+            <SanityImage src={project.image} layout="fill" />
           </div>
           <WithCodeTags tag="article" className="mt-16">
             <ArticlePortableText value={project.description} />
