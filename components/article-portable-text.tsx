@@ -72,11 +72,8 @@ const ArticlePortableText = (props: ComponentProps<typeof PortableText>) => {
           ),
         },
         marks: {
-          link: ({ children }) => (
-            <a
-              href="mailto:hey@kierian.me"
-              className="text-blue-500 dark:text-crayola"
-            >
+          link: ({ children, value }) => (
+            <a href={value.href} className="text-blue-500 dark:text-crayola">
               {children}
             </a>
           ),
