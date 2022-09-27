@@ -78,7 +78,7 @@ const ArticlePortableText = (props: ComponentProps<typeof PortableText>) => {
             </ol>
           ),
           bullet: ({ children }) => (
-            <ul className="ml-10 list-decimal text-sm font-light md:text-base">
+            <ul className="ml-10 list-disc text-sm font-light md:text-base">
               {children}
             </ul>
           ),
