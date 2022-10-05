@@ -1,16 +1,27 @@
 import {
   createContext,
+  Dispatch,
   ReactElement,
   ReactNode,
+  SetStateAction,
   useEffect,
   useState,
 } from "react";
 
-const ThemeContext = createContext({
+interface IThemeContext {
+  darkMode: boolean;
+  ready: boolean;
+  dirty: null | boolean;
+  toggleThemeHandler: () => void;
+  setDirty: Dispatch<SetStateAction<boolean | null>>;
+}
+
+const ThemeContext = createContext<IThemeContext>({
   darkMode: true,
   ready: false,
   dirty: null as boolean | null,
   toggleThemeHandler: () => {},
+  setDirty: () => {},
 });
 
 interface ThemeContextProps {
@@ -79,7 +90,7 @@ export function ThemeContextProvider(props: ThemeContextProps): ReactElement {
 
   return (
     <ThemeContext.Provider
-      value={{ darkMode, toggleThemeHandler, ready, dirty }}
+      value={{ darkMode, toggleThemeHandler, ready, dirty, setDirty }}
     >
       {props.children}
     </ThemeContext.Provider>

@@ -1,9 +1,14 @@
 import { motion } from "framer-motion";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import ThemeContext from "../contexts/theme";
 
 const AnimatedK = () => {
   const theme = useContext(ThemeContext);
+  const { setDirty } = theme;
+
+  useEffect(() => {
+    setDirty(true);
+  }, [setDirty]);
 
   return (
     <motion.svg
