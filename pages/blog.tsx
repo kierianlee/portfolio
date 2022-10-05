@@ -11,7 +11,7 @@ import PageTitle from "../components/page-title";
 import { motion } from "framer-motion";
 import SanityImage from "../components/sanity-image";
 
-const postsQuery = `*[_type == "post"] { 
+const postsQuery = `*[_type == "post"] | order(date desc) { 
   _id,
   image,
   date,
