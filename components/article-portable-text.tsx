@@ -12,7 +12,7 @@ const ArticlePortableText = (props: ComponentProps<typeof PortableText>) => {
           code: ({ value: { code, language } }) => (
             <NumberedHighlight code={code} language={language} />
           ),
-          image: ({ value }) => <SanityImage src={value} />,
+          image: ({ value }) => <SanityImage alt="Article image" src={value} />,
         },
         block: {
           normal: ({ children }) =>

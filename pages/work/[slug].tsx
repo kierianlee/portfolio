@@ -37,7 +37,7 @@ const Work = ({ project }: InferGetStaticPropsType<typeof getStaticProps>) => {
         </WithCodeTags>
         <div className="mx-auto mt-12 w-full max-w-2xl">
           <div className="relative h-48 sm:h-[300px] md:h-[400px] [&>*>img]:object-cover">
-            <SanityImage src={project.image} layout="fill" />
+            <SanityImage src={project.image} fill alt={project.name} />
           </div>
           <WithCodeTags tag="article" className="mt-16">
             <ArticlePortableText value={project.description} />

@@ -43,7 +43,12 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
         </WithCodeTags>
         <div className="mx-auto mt-12 w-full max-w-2xl">
           <div className="relative h-48 sm:h-[300px] md:h-[400px] [&>*>img]:object-cover">
-            <SanityImage src={post.image} layout="fill" className="cover" />
+            <SanityImage
+              src={post.image}
+              fill
+              alt={post.title}
+              className="cover"
+            />
           </div>
           <WithCodeTags tag="article" className="mt-16">
             <ArticlePortableText value={post.content} />
