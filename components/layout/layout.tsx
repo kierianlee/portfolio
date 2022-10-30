@@ -20,10 +20,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
   const theme = useContext(ThemeContext);
   const router = useRouter();
 
-  if (!theme.ready) {
-    return <></>;
-  }
-
   return (
     <main className="relative flex min-h-full flex-col bg-white dark:bg-phantom dark:text-white">
       <div className="fixed left-auto right-0 top-0 z-20 flex h-screen w-full justify-around">

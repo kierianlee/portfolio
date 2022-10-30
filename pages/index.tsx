@@ -34,6 +34,32 @@ const Home: NextPageWithLayout<{
 }> = ({ data }) => {
   const theme = useContext(ThemeContext);
 
+  if (!theme.ready) {
+    return (
+      <>
+        <NextSeo
+          title="Kierian - Home"
+          description={data.home.subtitle}
+          openGraph={{
+            url: "https://kierian.me",
+            title: "Kierian - Home",
+            description: data.home.subtitle,
+            images: [
+              {
+                url: "https://kierian.me/site.jpg",
+                width: 600,
+                height: 600,
+                alt: "Kierian",
+                type: "image/jpeg",
+              },
+            ],
+            siteName: "Kierian",
+          }}
+        />
+      </>
+    );
+  }
+
   return (
     <>
       <NextSeo
