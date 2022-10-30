@@ -8,20 +8,23 @@ import { type Post as PostType } from "../../types/post";
 import ArticlePortableText from "../../components/article-portable-text";
 import SanityImage from "../../components/sanity-image";
 import { NextSeo } from "next-seo";
+import { useNextSanityImage } from "next-sanity-image";
 
 const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const imageProps = useNextSanityImage(sanity, post.image);
+
   return (
     <>
       <NextSeo
         title={`Kierian - ${post.title}`}
         description={post.subtitle}
         openGraph={{
-          url: `https://kierian.me/blog/${post.slug}`,
+          url: `https://kierian.me/blog/${post.slug.current}`,
           title: `Kierian - ${post.title}`,
           description: post.subtitle,
           images: [
             {
-              url: post.image,
+              url: imageProps.src,
               alt: "Kierian",
               type: "image/jpeg",
             },

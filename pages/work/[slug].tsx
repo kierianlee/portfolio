@@ -7,20 +7,23 @@ import { Project } from "../../types/project";
 import ArticlePortableText from "../../components/article-portable-text";
 import SanityImage from "../../components/sanity-image";
 import { NextSeo } from "next-seo";
+import { useNextSanityImage } from "next-sanity-image";
 
 const Work = ({ project }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const imageProps = useNextSanityImage(sanity, project.image);
+
   return (
     <>
       <NextSeo
         title={`Kierian - ${project.name}`}
         description={project.name}
         openGraph={{
-          url: `https://kierian.me/work/${project.slug}`,
+          url: `https://kierian.me/work/${project.slug.current}`,
           title: `Kierian - ${project.name}`,
           description: project.name,
           images: [
             {
-              url: project.image,
+              url: imageProps.src,
               alt: "Kierian",
               type: "image/jpeg",
             },
