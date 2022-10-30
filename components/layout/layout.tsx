@@ -57,21 +57,21 @@ const Layout = ({ children }: { children: ReactNode }) => {
         <div className="hidden sm:block" />
         <div className="flex flex-wrap items-center gap-x-8 gap-y-2">
           {navLinks.map(({ label, path }, index) => (
-            <Link href={path} passHref key={index}>
-              <a
-                className={`relative font-mono text-xs font-light md:text-sm ${
-                  (router.pathname.includes(path) && path !== "/") ||
-                  (path === "/" && router.pathname === "/")
-                    ? "text-blue-500 dark:text-crayola"
-                    : "text-muted dark:text-[rgba(255,255,255,0.4)]"
-                } duration-100 hover:text-black dark:hover:text-white ${
-                  index === navLinks.length - 1
-                    ? ""
-                    : `after:pointer-events-none after:absolute after:left-[calc(100%+1rem)] after:-translate-x-1/2 after:text-muted after:content-['/'] dark:after:text-[rgba(255,255,255,0.4)]`
-                } `}
-              >
-                {label}
-              </a>
+            <Link
+              href={path}
+              className={`relative font-mono text-xs font-light md:text-sm ${
+                (router.pathname.includes(path) && path !== "/") ||
+                (path === "/" && router.pathname === "/")
+                  ? "text-blue-500 dark:text-crayola"
+                  : "text-muted dark:text-[rgba(255,255,255,0.4)]"
+              } duration-100 hover:text-black dark:hover:text-white ${
+                index === navLinks.length - 1
+                  ? ""
+                  : `after:pointer-events-none after:absolute after:left-[calc(100%+1rem)] after:-translate-x-1/2 after:text-muted after:content-['/'] dark:after:text-[rgba(255,255,255,0.4)]`
+              } `}
+              key={index}
+            >
+              {label}
             </Link>
           ))}
         </div>

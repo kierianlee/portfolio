@@ -94,11 +94,11 @@ const Post = ({
 }) => {
   return (
     <motion.div variants={childAnimationVariants}>
-      <Link href={`/blog/${slug.current}`} passHref>
-        <motion.a className="isolated relative flex items-center gap-6">
+      <Link href={`/blog/${slug.current}`}>
+        <motion.div className="isolated relative flex items-center gap-6">
           <div className="relative h-24 w-24 [&>span]:rounded-full">
-            <div className="[&>*>img]:rounded-full [&>*>img]:object-cover">
-              <SanityImage alt={title} layout="fill" src={image} />
+            <div className="[&>img]:rounded-full [&>img]:object-cover">
+              <SanityImage alt={title} fill src={image} />
             </div>
           </div>
           <div className="flex-1">
@@ -108,7 +108,7 @@ const Post = ({
             </div>
             <div className="mt-4 font-mono text-xs md:text-sm">{subtitle}</div>
           </div>
-        </motion.a>
+        </motion.div>
       </Link>
     </motion.div>
   );

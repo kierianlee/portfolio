@@ -92,13 +92,13 @@ const ProjectCard = ({
   project: Project;
 }) => {
   return (
-    <Link href={`/work/${slug.current}`} passHref>
-      <motion.a
-        className="isolated relative h-[300px]"
-        variants={childAnimationVariants}
-      >
+    <Link
+      href={`/work/${slug.current}`}
+      className="isolated relative h-[300px]"
+    >
+      <motion.div variants={childAnimationVariants}>
         <div className="[&>*>img]:object-cover">
-          <SanityImage alt={name} layout="fill" src={image} />
+          <SanityImage alt={name} fill src={image} />
         </div>
         <div className="absolute bottom-0 z-20 flex w-full items-center justify-between bg-[rgba(0,0,0,0.6)] p-2">
           <div className="font-mono text-sm text-white">{name}</div>
@@ -113,7 +113,7 @@ const ProjectCard = ({
             ))}
           </div>
         </div>
-      </motion.a>
+      </motion.div>
     </Link>
   );
 };

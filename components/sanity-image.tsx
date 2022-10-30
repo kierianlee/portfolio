@@ -8,9 +8,8 @@ const SanityImage = ({ src, ...props }: ComponentProps<typeof Image>) => {
 
   return (
     <Image
-      alt=""
       {...props}
-      {...(props.layout && props.layout === "fill"
+      {...(props.fill
         ? {
             loader: imageProps.loader,
             placeholder: imageProps.placeholder,
