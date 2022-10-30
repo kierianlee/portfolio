@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { ReactElement, useContext, useEffect, useState } from "react";
 import AnimatedK from "../components/animated-k";
 import Layout from "../components/layout/layout";
@@ -37,15 +36,12 @@ const Home: NextPageWithLayout<{
 
   return (
     <>
-      <Head>
-        <title>Kierian - Home</title>
-      </Head>
       <NextSeo
-        title={data.home.title}
+        title="Kierian - Home"
         description={data.home.subtitle}
         openGraph={{
           url: "https://kierian.me",
-          title: data.home.title,
+          title: "Kierian - Home",
           description: data.home.subtitle,
           images: [
             {

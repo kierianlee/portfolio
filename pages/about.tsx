@@ -1,5 +1,4 @@
 import { GetStaticProps } from "next";
-import Head from "next/head";
 import { ReactElement } from "react";
 import Layout from "../components/layout/layout";
 import WithCodeTags from "../components/with-code-tag";
@@ -28,9 +27,6 @@ export const getStaticProps: GetStaticProps = async () => {
 const About = ({ data }: { data: AboutType }) => {
   return (
     <>
-      <Head>
-        <title>Kierian - About</title>
-      </Head>
       <NextSeo
         title="Kierian - About"
         description="About myself"

@@ -1,8 +1,10 @@
 import "../styles/globals.css";
+import seoConfig from "../config/next-seo";
 import type { AppProps } from "next/app";
 import { ReactElement, ReactNode, useEffect } from "react";
 import { NextPage } from "next";
 import { ThemeContextProvider } from "../contexts/theme";
+import { DefaultSeo } from "next-seo";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -25,9 +27,12 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   }, []);
 
   return (
-    <ThemeContextProvider>
-      {getLayout(<Component {...pageProps} />)}
-    </ThemeContextProvider>
+    <>
+      <DefaultSeo {...seoConfig} />
+      <ThemeContextProvider>
+        {getLayout(<Component {...pageProps} />)}
+      </ThemeContextProvider>
+    </>
   );
 }
 

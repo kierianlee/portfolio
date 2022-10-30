@@ -1,5 +1,4 @@
 import { GetStaticProps, InferGetStaticPropsType } from "next";
-import Head from "next/head";
 import Link from "next/link";
 import { ReactElement } from "react";
 import Layout from "../components/layout/layout";
@@ -47,9 +46,6 @@ const childAnimationVariants = {
 const Work = ({ projects }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
-      <Head>
-        <title>Kierian - Work</title>
-      </Head>
       <NextSeo
         title="Kierian - Work"
         description="A collection of my recent work"

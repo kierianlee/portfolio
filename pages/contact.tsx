@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { ReactElement } from "react";
 import Layout from "../components/layout/layout";
 import WithCodeTags from "../components/with-code-tag";
@@ -35,9 +34,6 @@ const Contact: NextPageWithLayout<{
 }> = ({ data }) => {
   return (
     <>
-      <Head>
-        <title>Kierian - Contact</title>
-      </Head>
       <NextSeo
         title="Kierian - Contact"
         description="Get in touch"

@@ -1,5 +1,4 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
-import Head from "next/head";
 import { ReactElement } from "react";
 import Layout from "../../components/layout/layout";
 import WithCodeTags from "../../components/with-code-tag";
@@ -12,9 +11,6 @@ import { NextSeo } from "next-seo";
 const Work = ({ project }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
-      <Head>
-        <title>{`Kierian - ${project.name}`}</title>
-      </Head>
       <NextSeo
         title={`Kierian - ${project.name}`}
         description={project.name}
