@@ -8,6 +8,7 @@ import { About as AboutType } from "../types/about";
 import { PortableText } from "@portabletext/react";
 import { motion } from "framer-motion";
 import PageTitle from "../components/page-title";
+import { NextSeo } from "next-seo";
 
 const aboutQuery = `*[_type == "about"][0] { 
   _id,
@@ -30,6 +31,25 @@ const About = ({ data }: { data: AboutType }) => {
       <Head>
         <title>Kierian - About</title>
       </Head>
+      <NextSeo
+        title="Kierian - About"
+        description="About myself"
+        openGraph={{
+          url: "https://kierian.me/about",
+          title: "Kierian - About",
+          description: "About myself",
+          images: [
+            {
+              url: "https://kierian.me/site.jpg",
+              width: 600,
+              height: 600,
+              alt: "Kierian",
+              type: "image/jpeg",
+            },
+          ],
+          siteName: "Kierian",
+        }}
+      />
       <div className="flex h-full flex-col items-center px-8 pt-16 pb-32">
         <WithCodeTags tag="h1" className="mt-12">
           <PageTitle title="About" />

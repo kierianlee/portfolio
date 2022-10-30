@@ -7,6 +7,7 @@ import { sanity } from "../../lib/sanity";
 import { Project } from "../../types/project";
 import ArticlePortableText from "../../components/article-portable-text";
 import SanityImage from "../../components/sanity-image";
+import { NextSeo } from "next-seo";
 
 const Work = ({ project }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
@@ -14,6 +15,23 @@ const Work = ({ project }: InferGetStaticPropsType<typeof getStaticProps>) => {
       <Head>
         <title>{`Kierian - ${project.name}`}</title>
       </Head>
+      <NextSeo
+        title={`Kierian - ${project.name}`}
+        description={project.name}
+        openGraph={{
+          url: `https://kierian.me/work/${project.slug}`,
+          title: `Kierian - ${project.name}`,
+          description: project.name,
+          images: [
+            {
+              url: project.image,
+              alt: "Kierian",
+              type: "image/jpeg",
+            },
+          ],
+          siteName: "Kierian",
+        }}
+      />
       <div className="flex h-full flex-col items-center px-8 pt-16 pb-32">
         <WithCodeTags tag="h1" className="mt-12">
           <h1 className="my-4 text-3xl font-semibold">{project.name}</h1>

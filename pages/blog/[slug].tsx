@@ -8,6 +8,7 @@ import dayjs from "dayjs";
 import { type Post as PostType } from "../../types/post";
 import ArticlePortableText from "../../components/article-portable-text";
 import SanityImage from "../../components/sanity-image";
+import { NextSeo } from "next-seo";
 
 const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
@@ -15,6 +16,23 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
       <Head>
         <title>{`Kierian - ${post.title}`}</title>
       </Head>
+      <NextSeo
+        title={`Kierian - ${post.title}`}
+        description={post.subtitle}
+        openGraph={{
+          url: `https://kierian.me/blog/${post.slug}`,
+          title: `Kierian - ${post.title}`,
+          description: post.subtitle,
+          images: [
+            {
+              url: post.image,
+              alt: "Kierian",
+              type: "image/jpeg",
+            },
+          ],
+          siteName: "Kierian",
+        }}
+      />
       <div className="flex h-full flex-col items-center px-8 pt-16 pb-32">
         <WithCodeTags tag="h1" className="mt-12">
           <div className="my-4 text-center">

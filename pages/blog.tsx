@@ -10,6 +10,7 @@ import { Post } from "../types/post";
 import PageTitle from "../components/page-title";
 import { motion } from "framer-motion";
 import SanityImage from "../components/sanity-image";
+import { NextSeo } from "next-seo";
 
 const postsQuery = `*[_type == "post"] | order(date desc) { 
   _id,
@@ -51,6 +52,25 @@ const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
       <Head>
         <title>Kierian - Blog</title>
       </Head>
+      <NextSeo
+        title="Kierian - Blog"
+        description="My musings"
+        openGraph={{
+          url: "https://kierian.me/blog",
+          title: "Kierian - Blog",
+          description: "My musings",
+          images: [
+            {
+              url: "https://kierian.me/site.jpg",
+              width: 600,
+              height: 600,
+              alt: "Kierian",
+              type: "image/jpeg",
+            },
+          ],
+          siteName: "Kierian",
+        }}
+      />
       <div className="flex h-full flex-col items-center px-8 pt-16 pb-32">
         <WithCodeTags tag="h1" className="mt-12">
           <PageTitle title="Blog" />

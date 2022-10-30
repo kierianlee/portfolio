@@ -12,6 +12,7 @@ import { socialIcons } from "../utils/social";
 import { NextPageWithLayout } from "./_app";
 import { motion } from "framer-motion";
 import ThemeContext from "../contexts/theme";
+import { NextSeo } from "next-seo";
 
 const homeQuery = `
 {
@@ -39,8 +40,27 @@ const Home: NextPageWithLayout<{
       <Head>
         <title>Kierian - Home</title>
       </Head>
+      <NextSeo
+        title={data.home.title}
+        description={data.home.subtitle}
+        openGraph={{
+          url: "https://kierian.me",
+          title: data.home.title,
+          description: data.home.subtitle,
+          images: [
+            {
+              url: "https://kierian.me/site.jpg",
+              width: 600,
+              height: 600,
+              alt: "Kierian",
+              type: "image/jpeg",
+            },
+          ],
+          siteName: "Kierian",
+        }}
+      />
       <div className="min-h-full px-12">
-        <div className="min-h-screen -mt-6 flex h-full flex-col items-center justify-center">
+        <div className="-mt-6 flex h-full min-h-screen flex-col items-center justify-center">
           <motion.div
             initial={{
               transform: theme.dirty ? "translateY(15%)" : "translateY(30%)",

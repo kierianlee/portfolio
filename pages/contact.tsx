@@ -12,6 +12,7 @@ import { socialIcons } from "../utils/social";
 import { PortableText } from "@portabletext/react";
 import PageTitle from "../components/page-title";
 import { motion } from "framer-motion";
+import { NextSeo } from "next-seo";
 
 const contactQuery = `
 {
@@ -37,6 +38,25 @@ const Contact: NextPageWithLayout<{
       <Head>
         <title>Kierian - Contact</title>
       </Head>
+      <NextSeo
+        title="Kierian - Contact"
+        description="Get in touch"
+        openGraph={{
+          url: "https://kierian.me/contact",
+          title: "Kierian - Blog",
+          description: "Get in touch",
+          images: [
+            {
+              url: "https://kierian.me/site.jpg",
+              width: 600,
+              height: 600,
+              alt: "Kierian",
+              type: "image/jpeg",
+            },
+          ],
+          siteName: "Kierian",
+        }}
+      />
       <div className="flex h-full flex-col items-center py-16">
         <WithCodeTags tag="h1" className="mt-12">
           <PageTitle title="Contact" />

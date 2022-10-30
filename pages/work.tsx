@@ -9,6 +9,7 @@ import { Project } from "../types/project";
 import PageTitle from "../components/page-title";
 import { motion } from "framer-motion";
 import SanityImage from "../components/sanity-image";
+import { NextSeo } from "next-seo";
 
 const projectsQuery = `*[_type == "project"] { 
   _id,
@@ -49,6 +50,25 @@ const Work = ({ projects }: InferGetStaticPropsType<typeof getStaticProps>) => {
       <Head>
         <title>Kierian - Work</title>
       </Head>
+      <NextSeo
+        title="Kierian - Work"
+        description="A collection of my recent work"
+        openGraph={{
+          url: "https://kierian.me/work",
+          title: "Kierian - Work",
+          description: "A collection of my recent work",
+          images: [
+            {
+              url: "https://kierian.me/site.jpg",
+              width: 600,
+              height: 600,
+              alt: "Kierian",
+              type: "image/jpeg",
+            },
+          ],
+          siteName: "Kierian",
+        }}
+      />
       <div className="flex h-full flex-col items-center px-8 pt-16 pb-32">
         <WithCodeTags tag="h1" className="mt-12">
           <PageTitle title="Work" />
