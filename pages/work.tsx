@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import SanityImage from "../components/sanity-image";
 import { NextSeo } from "next-seo";
 
-const projectsQuery = `*[_type == "project"] { 
+const projectsQuery = `*[_type == "project"] | order(_createdAt desc) { 
   _id,
   image,
   tags,
