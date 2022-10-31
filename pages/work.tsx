@@ -97,7 +97,7 @@ const ProjectCard = ({
       className="isolated relative h-[300px]"
     >
       <motion.div variants={childAnimationVariants}>
-        <div className="[&>*>img]:object-cover">
+        <div className="[&>img]:object-cover">
           <SanityImage alt={name} fill src={image} />
         </div>
         <div className="absolute bottom-0 z-20 flex w-full items-center justify-between bg-[rgba(0,0,0,0.6)] p-2">

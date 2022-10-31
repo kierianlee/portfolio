@@ -42,7 +42,7 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
           </div>
         </WithCodeTags>
         <div className="mx-auto mt-12 w-full max-w-2xl">
-          <div className="relative h-48 sm:h-[300px] md:h-[400px] [&>*>img]:object-cover">
+          <div className="relative h-48 sm:h-[300px] md:h-[400px] [&>img]:object-cover">
             <SanityImage
               src={post.image}
               fill
