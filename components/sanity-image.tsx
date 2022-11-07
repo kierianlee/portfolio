@@ -3,18 +3,28 @@ import { sanity } from "../lib/sanity";
 import Image from "next/image";
 import { ComponentProps } from "react";
 
-const SanityImage = ({ src, ...props }: ComponentProps<typeof Image>) => {
-  const imageProps = useNextSanityImage(sanity, src);
+const SanityImage = ({
+  sanityImage,
+  ...props
+}: Omit<ComponentProps<typeof Image>, "src"> & {
+  sanityImage: {
+    url: string;
+    metadata: {
+      lqip: string;
+    };
+  };
+}) => {
+  const imageProps = useNextSanityImage(sanity, sanityImage);
 
   return (
     <Image
       {...props}
       {...(props.fill
         ? {
-            loader: imageProps.loader,
-            placeholder: imageProps.placeholder,
             src: imageProps.src,
-            blurDataURL: imageProps.blurDataURL,
+            loader: imageProps.loader,
+            placeholder: "blur",
+            blurDataURL: sanityImage.metadata.lqip,
           }
         : imageProps)}
     />

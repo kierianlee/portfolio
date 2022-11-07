@@ -44,7 +44,7 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
         <div className="mx-auto mt-12 w-full max-w-2xl">
           <div className="relative h-48 sm:h-[300px] md:h-[400px] [&>img]:object-cover">
             <SanityImage
-              src={post.image}
+              sanityImage={post.image.asset}
               fill
               alt={post.title}
               className="cover"
@@ -74,7 +74,20 @@ export const getStaticProps: GetStaticProps<{ post: PostType }> = async ({
   params,
 }) => {
   const post = await sanity.fetch(
-    `*[_type == "post" && slug.current == $slug][0]`,
+    `*[_type == "post" && slug.current == $slug][0] { 
+      _id,
+      image {
+        asset->{
+          ...,
+          metadata
+        }
+      },
+      date,
+      title,
+      subtitle,
+      content,
+      slug
+    }`,
     {
       slug: params?.slug || "",
     }

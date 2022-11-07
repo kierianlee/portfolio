@@ -13,7 +13,12 @@ import { NextSeo } from "next-seo";
 
 const postsQuery = `*[_type == "post"] | order(date desc) { 
   _id,
-  image,
+  image {
+    asset->{
+      ...,
+      metadata
+    }
+  },
   date,
   title,
   subtitle,
@@ -98,7 +103,7 @@ const Post = ({
         <motion.div className="isolated relative flex items-center gap-6">
           <div className="relative h-24 w-24 [&>span]:rounded-full">
             <div className="[&>img]:rounded-full [&>img]:object-cover">
-              <SanityImage alt={title} fill src={image} />
+              <SanityImage alt={title} fill sanityImage={image.asset} />
             </div>
           </div>
           <div className="flex-1">

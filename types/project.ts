@@ -2,7 +2,14 @@ import { Slug } from "./slug";
 
 export interface Project {
   _id: string;
-  image: string;
+  image: {
+    asset: {
+      url: string;
+      metadata: {
+        lqip: string;
+      };
+    };
+  };
   tags: string[];
   name: string;
   description: any[];

@@ -2,7 +2,14 @@ import { Slug } from "./slug";
 
 export interface Post {
   _id: string;
-  image: string;
+  image: {
+    asset: {
+      url: string;
+      metadata: {
+        lqip: string;
+      };
+    };
+  };
   date: string;
   title: string;
   subtitle: string;

@@ -12,7 +12,12 @@ import { NextSeo } from "next-seo";
 
 const projectsQuery = `*[_type == "project"] | order(_createdAt desc) { 
   _id,
-  image,
+  image {
+    asset->{
+      ...,
+      metadata
+    }
+  },
   tags,
   name,
   slug
@@ -98,7 +103,7 @@ const ProjectCard = ({
     >
       <motion.div variants={childAnimationVariants}>
         <div className="[&>img]:object-cover">
-          <SanityImage alt={name} fill src={image} />
+          <SanityImage alt={name} fill sanityImage={image.asset} />
         </div>
         <div className="absolute bottom-0 z-20 flex w-full items-center justify-between bg-[rgba(0,0,0,0.6)] p-2">
           <div className="font-mono text-sm text-white">{name}</div>

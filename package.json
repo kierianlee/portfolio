@@ -19,7 +19,7 @@
     "dayjs": "^1.11.5",
     "framer-motion": "^7.3.5",
     "next": "^13.0.0",
-    "next-sanity-image": "^4.1.0",
+    "next-sanity-image": "^5.0.0",
     "next-seo": "^5.11.1",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",

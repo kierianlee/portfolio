@@ -37,7 +37,11 @@ const Work = ({ project }: InferGetStaticPropsType<typeof getStaticProps>) => {
         </WithCodeTags>
         <div className="mx-auto mt-12 w-full max-w-2xl">
           <div className="relative h-48 sm:h-[300px] md:h-[400px] [&>img]:object-cover">
-            <SanityImage src={project.image} fill alt={project.name} />
+            <SanityImage
+              sanityImage={project.image.asset}
+              fill
+              alt={project.name}
+            />
           </div>
           <WithCodeTags tag="article" className="mt-16">
             <ArticlePortableText value={project.description} />
@@ -63,7 +67,19 @@ export const getStaticProps: GetStaticProps<{ project: Project }> = async ({
   params,
 }) => {
   const project = await sanity.fetch(
-    `*[_type == "project" && slug.current == $slug][0]`,
+    `*[_type == "project" && slug.current == $slug][0] { 
+      _id,
+      description,
+      image {
+        asset->{
+          ...,
+          metadata
+        }
+      },
+      tags,
+      name,
+      slug
+    }`,
     {
       slug: params?.slug || "",
     }
