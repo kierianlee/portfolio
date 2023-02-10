@@ -101,9 +101,9 @@ const ProjectCard = ({
       href={`/work/${slug.current}`}
       className="isolated relative h-[300px]"
     >
-      <motion.div variants={childAnimationVariants}>
-        <div className="[&>img]:object-cover">
-          <SanityImage alt={name} fill sanityImage={image.asset} />
+      <motion.div variants={childAnimationVariants} className="h-full">
+        <div className="relative h-full [&>img]:object-cover">
+          <SanityImage alt={name} fill sanityImage={image.asset} sizes="100%" />
         </div>
         <div className="absolute bottom-0 z-20 flex w-full items-center justify-between bg-[rgba(0,0,0,0.6)] p-2">
           <div className="font-mono text-sm text-white">{name}</div>

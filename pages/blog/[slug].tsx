@@ -48,6 +48,7 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
               fill
               alt={post.title}
               className="cover"
+              sizes="100%"
             />
           </div>
           <WithCodeTags tag="article" className="mt-16">

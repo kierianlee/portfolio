@@ -102,8 +102,8 @@ const Post = ({
       <Link href={`/blog/${slug.current}`}>
         <motion.div className="isolated relative flex items-center gap-6">
           <div className="relative h-24 w-24 [&>span]:rounded-full">
-            <div className="[&>img]:rounded-full [&>img]:object-cover">
-              <SanityImage alt={title} fill sanityImage={image.asset} />
+            <div className="relative h-full [&>img]:rounded-full [&>img]:object-cover">
+              <SanityImage alt={title} fill sanityImage={image.asset} sizes="100%" />
             </div>
           </div>
           <div className="flex-1">

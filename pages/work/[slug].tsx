@@ -41,6 +41,7 @@ const Work = ({ project }: InferGetStaticPropsType<typeof getStaticProps>) => {
               sanityImage={project.image.asset}
               fill
               alt={project.name}
+              sizes="100%"
             />
           </div>
           <WithCodeTags tag="article" className="mt-16">

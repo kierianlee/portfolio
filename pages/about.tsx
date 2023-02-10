@@ -9,10 +9,17 @@ import { motion } from "framer-motion";
 import PageTitle from "../components/page-title";
 import { NextSeo } from "next-seo";
 import ThemeContext from "../contexts/theme";
+import SanityImage from "../components/sanity-image";
 
 const aboutQuery = `*[_type == "about"][0] { 
   _id,
-  content
+  content,
+  avatar {
+    asset->{
+      ...,
+      metadata
+    }
+  }
 }`;
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -173,11 +180,9 @@ const About = ({ data }: { data: AboutType }) => {
                 }}
                 className="mb-12 flex justify-center"
               >
-                <img
-                  src="/avatar.jpeg"
-                  alt="Kierian"
-                  className="h-60 w-60 rounded-full"
-                />
+                <div className="relative h-60 w-60 overflow-hidden rounded-full">
+                  <SanityImage alt="Kierian" sanityImage={data.avatar.asset} />
+                </div>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0 }}
@@ -199,7 +204,7 @@ const About = ({ data }: { data: AboutType }) => {
                             {children}
                           </p>
                         ) : (
-                          <p className="whitespace-pre text-center font-mono text-sm text-xs leading-6 text-muted duration-200 before:content-['\a'] hover:text-black dark:text-dimmed dark:hover:text-white md:text-sm">
+                          <p className="whitespace-pre text-center font-mono text-xs leading-6 text-muted duration-200 before:content-['\a'] hover:text-black dark:text-dimmed dark:hover:text-white md:text-sm">
                             {children}
                           </p>
                         ),
