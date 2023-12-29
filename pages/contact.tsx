@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useContext } from "react";
 import Layout from "../components/layout/layout";
 import WithCodeTags from "../components/with-code-tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,6 +12,7 @@ import { PortableText } from "@portabletext/react";
 import PageTitle from "../components/page-title";
 import { motion } from "framer-motion";
 import { NextSeo } from "next-seo";
+import ThemeContext from "../contexts/theme";
 
 const contactQuery = `
 {
@@ -32,6 +33,8 @@ export const getStaticProps: GetStaticProps = async () => {
 const Contact: NextPageWithLayout<{
   data: { contact: ContactType; socials: Social[] };
 }> = ({ data }) => {
+  const theme = useContext(ThemeContext);
+
   return (
     <>
       <NextSeo
@@ -79,7 +82,7 @@ const Contact: NextPageWithLayout<{
                           {children}
                         </p>
                       ) : (
-                        <p className="whitespace-pre text-center font-mono text-sm text-xs leading-6 text-muted duration-200 before:content-['\a'] hover:text-black dark:text-dimmed dark:hover:text-white md:text-sm">
+                        <p className="whitespace-pre text-center font-mono text-xs leading-6 text-muted duration-200 before:content-['\a'] hover:text-black dark:text-dimmed dark:hover:text-white md:text-sm">
                           {children}
                         </p>
                       ),
@@ -112,6 +115,48 @@ const Contact: NextPageWithLayout<{
                 ))}
               </div>
             </div>
+          </WithCodeTags>
+
+          <div className="my-10 text-center font-mono text-xs text-muted dark:text-dimmed">
+            or through this form
+          </div>
+
+          <WithCodeTags tag="form">
+            <form
+              className="flex w-full flex-col gap-4 font-mono text-xs sm:min-w-[400px] md:text-sm"
+              action="https://formie.dev/form/29d98e3f-be19-4021-9f31-6f5cc1e25e0a"
+              method="POST"
+            >
+              <input
+                className="w-full border py-1 px-2 dark:border-neutral-700 dark:bg-neutral-900 dark:placeholder:text-dimmed/40"
+                placeholder="Name"
+                name="name"
+              />
+              <textarea
+                className="w-full resize-none border py-1 px-2 dark:border-neutral-700 dark:bg-neutral-900 dark:placeholder:text-dimmed/40"
+                placeholder="Message"
+                name="message"
+              />
+              <button className="w-full border bg-white py-1 px-2 dark:border-neutral-700 dark:bg-neutral-900">
+                Submit
+              </button>
+              <a
+                href="https://formie.dev"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-end gap-2 text-xs"
+              >
+                Powered by{" "}
+                <img
+                  src={
+                    theme.darkMode
+                      ? "https://formie.dev/logo-dark.svg"
+                      : "https://formie.dev/logo-light.svg"
+                  }
+                  className="h-3 "
+                />
+              </a>
+            </form>
           </WithCodeTags>
         </motion.div>
       </div>
