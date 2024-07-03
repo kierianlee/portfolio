@@ -38,9 +38,8 @@ body,
 }
 
 @font-face {
-  font-family: "Sk-Modernist Mono";
-  src: url("../public/fonts/Sk-Modernist-Mono.woff2") format("woff2"),
-    url("../public/fonts/Sk-Modernist-Mono.woff") format("woff");
+  font-family: "Space Mono";
+  src: url("../public/fonts/SpaceMono-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;

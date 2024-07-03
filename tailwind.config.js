@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     fontFamily: {
       serif: ["Source Sans Pro"],
-      mono: ["Sk-Modernist Mono"],
+      mono: ["Space Mono"],
     },
     extend: {
       colors: {
