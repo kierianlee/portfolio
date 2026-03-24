@@ -174,10 +174,10 @@ function ThoughtsSection({ posts }: { posts: typeof allPosts }) {
           Thoughts
           {hasMore && (
             <>
-              <span className="text-xs text-muted-foreground/60 [[data-panel-open]_&]:hidden">
+              <span className="text-xs text-muted-foreground/60 in-data-panel-open:hidden">
                 +{remainingPosts.length}
               </span>
-              <span className="text-xs text-muted-foreground/60 hidden [[data-panel-open]_&]:inline">
+              <span className="text-xs text-muted-foreground/60 hidden in-data-panel-open:inline">
                 −
               </span>
             </>
