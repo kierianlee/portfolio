@@ -149,7 +149,7 @@ function App() {
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex gap-2 items-center font-medium text-lg text-foreground/80 hover:text-foreground transition-colors duration-150"
+                    className="flex gap-2 items-start font-medium text-lg text-foreground/80 hover:text-foreground transition-colors duration-150"
                   >
                     <span className="whitespace-nowrap">{project.title}</span>
                     <span className="text-muted-foreground">
