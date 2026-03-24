@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { IconBrandLinkedin, IconBrandGithub } from "tabler-icons";
+import { IconBrandLinkedin, IconBrandGithub, IconMail } from "tabler-icons";
 import { allPosts, allProjects } from "content-collections";
 import { PostLink } from "#/components/post-preview";
 import {
@@ -124,6 +124,12 @@ function App() {
               className="text-muted-foreground hover:text-foreground transition-colors duration-150"
             >
               <IconBrandLinkedin size={24} />
+            </a>
+            <a
+              href="mailto:hey@kierian.me"
+              className="text-muted-foreground hover:text-foreground transition-colors duration-150"
+            >
+              <IconMail size={24} />
             </a>
           </div>
         </section>
