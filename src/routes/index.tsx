@@ -26,7 +26,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="relative flex flex-col gap-20 max-w-xl mx-auto px-6 py-36">
+      <div className="relative flex flex-col gap-20 max-w-xl mx-auto px-6 py-20 md:py-36">
         {/* Intro */}
         <section className="flex flex-col gap-5">
           <div className="w-16 h-16 rounded-full bg-border overflow-hidden">
@@ -149,7 +149,7 @@ function App() {
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex gap-2 items-start font-medium text-lg text-foreground/80 hover:text-foreground transition-colors duration-150"
+                    className="flex flex-col md:flex-row md:gap-2 items-start font-medium text-lg text-foreground/80 hover:text-foreground transition-colors duration-150"
                   >
                     <span className="whitespace-nowrap">{project.title}</span>
                     <span className="text-muted-foreground">
