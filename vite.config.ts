@@ -7,12 +7,14 @@ import { nitro } from "nitro/vite";
 
 import viteReact from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
+import contentCollections from "@content-collections/vite";
 
 const config = defineConfig({
   plugins: [
     devtools(),
     tsconfigPaths({ projects: ["./tsconfig.json"] }),
     tailwindcss(),
+    contentCollections(),
     tanstackStart(),
     nitro(),
     viteReact(),

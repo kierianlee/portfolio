@@ -1,4 +1,5 @@
-import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
+import { HeadContent, Outlet, Scripts, createRootRoute } from "@tanstack/react-router";
+import { ScrollArea } from "#/components/ui/scroll-area";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 
@@ -19,16 +20,6 @@ export const Route = createRootRoute({
       },
     ],
     links: [
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      {
-        rel: "preconnect",
-        href: "https://fonts.gstatic.com",
-        crossOrigin: "anonymous",
-      },
-      {
-        rel: "stylesheet",
-        href: "https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap",
-      },
       {
         rel: "stylesheet",
         href: appCss,
@@ -36,7 +27,16 @@ export const Route = createRootRoute({
     ],
   }),
   shellComponent: RootDocument,
+  component: RootComponent,
 });
+
+function RootComponent() {
+  return (
+    <ScrollArea className="h-screen">
+      <Outlet />
+    </ScrollArea>
+  );
+}
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (

@@ -3,6 +3,11 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/inter";
 
+@font-face {
+  font-family: "Inter Variable";
+  font-display: block;
+}
+
 @custom-variant dark (&:is(.dark *));
 @plugin "@tailwindcss/typography";
 
@@ -13,6 +18,7 @@
 
 @theme inline {
   --animate-skeleton: skeleton 2s -1s infinite linear;
+  --animate-draw-line: draw-line 1.2s ease-out both;
   --font-heading: var(--font-sans);
   --animate-caret-blink: 1s ease-out infinite caret-blink;
   --font-sans: "Inter Variable", sans-serif;
@@ -64,6 +70,14 @@
   @keyframes skeleton {
     to {
       background-position: -200% 0;
+    }
+  }
+  @keyframes draw-line {
+    from {
+      stroke-dashoffset: 2;
+    }
+    to {
+      stroke-dashoffset: 0;
     }
   }
   @keyframes caret-blink {
@@ -173,3 +187,12 @@
     @apply font-sans;
   }
 }
+
+::view-transition-old(root) {
+  @apply animate-out fade-out duration-150 ease-in;
+}
+
+::view-transition-new(root) {
+  @apply animate-in fade-in duration-200 ease-out;
+}
+
