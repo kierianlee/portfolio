@@ -9,10 +9,12 @@ export function ScrollArea({
   children,
   scrollFade = false,
   scrollbarGutter = false,
+  scrollRestorationId,
   ...props
 }: ScrollAreaPrimitive.Root.Props & {
   scrollFade?: boolean;
   scrollbarGutter?: boolean;
+  scrollRestorationId?: string;
 }): React.ReactElement {
   return (
     <ScrollAreaPrimitive.Root
@@ -28,6 +30,9 @@ export function ScrollArea({
             "data-has-overflow-y:pe-2.5 data-has-overflow-x:pb-2.5",
         )}
         data-slot="scroll-area-viewport"
+        {...(scrollRestorationId
+          ? { "data-scroll-restoration-id": scrollRestorationId }
+          : {})}
       >
         {children}
       </ScrollAreaPrimitive.Viewport>

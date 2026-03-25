@@ -37,7 +37,7 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <ScrollArea className="h-dvh">
+    <ScrollArea className="h-dvh" scrollRestorationId="root-scroll-area">
       <Outlet />
     </ScrollArea>
   );
