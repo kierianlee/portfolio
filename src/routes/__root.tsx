@@ -37,10 +37,8 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <ScrollArea className="h-screen">
-      <div className="min-h-screen">
-        <Outlet />
-      </div>
+    <ScrollArea className="h-dvh">
+      <Outlet />
     </ScrollArea>
   );
 }
