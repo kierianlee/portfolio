@@ -26,7 +26,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="relative flex flex-col gap-20 max-w-xl mx-auto px-6 py-20 md:py-36">
+      <div className="relative flex flex-col gap-20 max-w-xl mx-auto px-6 py-16 md:py-36">
         {/* Intro */}
         <section className="flex flex-col gap-5">
           <div className="w-16 h-16 rounded-full bg-border overflow-hidden">
