@@ -12,17 +12,14 @@ function PostPage() {
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-background">
-        <div className="max-w-xl mx-auto px-6 py-16 md:py-36">
+      <div className="max-w-xl mx-auto px-6 py-20 md:py-36">
           <p className="text-muted-foreground">Post not found.</p>
-        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-xl mx-auto px-6 py-16 md:py-36">
+    <div className="max-w-xl mx-auto px-6 py-20 md:py-36">
         <Link
           to="/"
           className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-150 mb-8 inline-block"
@@ -46,7 +43,6 @@ function PostPage() {
             <MDXContent code={post.mdx} />
           </div>
         </article>
-      </div>
     </div>
   );
 }

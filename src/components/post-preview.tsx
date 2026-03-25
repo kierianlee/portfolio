@@ -6,17 +6,23 @@ import { MDXContent } from "@content-collections/mdx/react";
 import { Card } from "#/components/ui/card";
 import { useState } from "react";
 
+const canHover =
+  typeof window !== "undefined" &&
+  window.matchMedia("(hover: hover)").matches;
+
 export function PostLink({ post }: { post: Post }) {
   const [visible, setVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const posRef = useRef({ x: 0, y: 0 });
 
   const show = useCallback((e: React.MouseEvent) => {
+    if (!canHover) return;
     posRef.current = { x: e.clientX + 16, y: e.clientY + 16 };
     setVisible(true);
   }, []);
 
   const move = useCallback((e: React.MouseEvent) => {
+    if (!canHover) return;
     if (cardRef.current) {
       cardRef.current.style.translate = `${e.clientX + 16}px ${e.clientY + 16}px`;
     }
