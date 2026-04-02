@@ -1,6 +1,6 @@
 ---
 title: "unravel"
-description: "Zero setup HTML form backend"
+description: "Pull requests that tell a story"
 url: "https://unravel.sh"
 order: 0
 ---
