@@ -1,7 +1,8 @@
-import React, { forwardRef, useMemo, useRef, useLayoutEffect } from "react";
+import type React from "react";
+import { forwardRef, useMemo, useRef, useLayoutEffect } from "react";
 import { Canvas, useFrame, useThree, type RootState } from "@react-three/fiber";
-import { Color, Mesh, ShaderMaterial } from "three";
-import { type IUniform } from "three";
+import { Color, type Mesh, type ShaderMaterial } from "three";
+import type { IUniform } from "three";
 
 type NormalizedRGB = [number, number, number];
 

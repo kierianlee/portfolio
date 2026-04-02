@@ -35,6 +35,7 @@ export function Group({
   children: React.ReactNode;
 } & React.ComponentProps<"div">): React.ReactElement {
   return (
+    // biome-ignore lint/a11y/useSemanticElements: intentional div with role for composability
     <div
       className={cn(groupVariants({ orientation }), className)}
       data-orientation={orientation}

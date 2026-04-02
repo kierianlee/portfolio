@@ -44,6 +44,7 @@ export function SpotlightBackground({
   const colorArray = Array.isArray(colors) ? colors : [colors];
 
   // Initialize spotlight positions
+  // biome-ignore lint/correctness/useExhaustiveDependencies: colorArray.map is stable when length is stable
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -161,7 +162,7 @@ export function SpotlightBackground({
       {/* Spotlight layers */}
       {colorArray.map((color, i) => (
         <div
-          key={i}
+          key={color}
           className="pointer-events-none absolute inset-0 transition-opacity duration-300"
           style={{
             opacity,

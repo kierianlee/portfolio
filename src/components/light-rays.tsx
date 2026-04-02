@@ -369,7 +369,7 @@ void main() {
               loseContextExt.loseContext();
             }
 
-            if (canvas && canvas.parentNode) {
+            if (canvas?.parentNode) {
               canvas.parentNode.removeChild(canvas);
             }
           } catch (error) {

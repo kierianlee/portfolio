@@ -155,7 +155,7 @@ export const LiquidCursor = ({
       style={{ opacity }}
     >
       {/* SVG Filter for the Gooey Effect */}
-      <svg className="hidden">
+      <svg className="hidden" aria-hidden="true">
         <defs>
           <filter id="liquid-cursor-filter">
             <feGaussianBlur
